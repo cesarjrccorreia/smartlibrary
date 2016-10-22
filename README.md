@@ -6,3 +6,4 @@ Project Use:
 - Maven 3
 - Spring 4
 - Hibernate 4
+- JSP
