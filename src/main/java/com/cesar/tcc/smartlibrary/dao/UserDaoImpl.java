@@ -27,7 +27,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	@Override
 	public User findBySSO(final String sso) {
 		final Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("ssoID", sso));
+		crit.add(Restrictions.eq("ssoId", sso));
 
 		final User user = (User) crit.uniqueResult();
 		if (user != null) {

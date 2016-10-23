@@ -29,6 +29,7 @@ public class PersistentLogin implements Serializable {
 	private String token;
 
 	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "last_used")
 	private Date lastUsed;
 
 	public String getSeries() {
