@@ -26,8 +26,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public User findBySSO(final String sso) {
-		final User user = userDao.findBySSO(sso);
+	public User findByUsername(final String username) {
+		final User user = userDao.findByUsername(username);
 
 		return user;
 	}
@@ -45,14 +45,13 @@ public class UserServiceImpl implements UserService {
 		final User entity = userDao.findById(user.getId());
 
 		if (entity != null) {
-			entity.setSsoId(user.getSsoId());
+			entity.setUsername(user.getUsername());
 
 			if (!user.getPassword().equals(entity.getPassword())) {
 				entity.setPassword(passwordEncoder.encode(user.getPassword()));
 			}
 
-			entity.setFirstName(user.getFirstName());
-			entity.setLastName(user.getLastName());
+			entity.setName(user.getName());
 			entity.setEmail(user.getEmail());
 			entity.setUserProfiles(user.getUserProfiles());
 
@@ -61,8 +60,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void deleteUserBySSO(final String sso) {
-		userDao.deleteBySSO(sso);
+	public void deleteUserByUsername(final String username) {
+		userDao.deleteByUsername(username);
 	}
 
 	@Override
@@ -71,8 +70,8 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean isUserSSOUnique(final Integer id, final String sso) {
-		final User user = findBySSO(sso);
+	public boolean isUsernameUnique(final Integer id, final String username) {
+		final User user = findByUsername(username);
 		return (user == null || ((id != null && (user.getId() == id))));
 	}
 

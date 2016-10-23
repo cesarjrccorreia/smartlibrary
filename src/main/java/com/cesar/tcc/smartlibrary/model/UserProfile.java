@@ -23,7 +23,7 @@ public class UserProfile implements Serializable {
 	private Integer id;
 
 	@Column(name = "TYPE", length = 15, unique = true, nullable = false)
-	private final String type = UserProfileType.USER.getUserProfileType();
+	private final String type = UserProfileType.Aluno.getUserProfileType();
 
 	public Integer getId() {
 		return id;

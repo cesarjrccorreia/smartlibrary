@@ -25,9 +25,9 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 
 	@Override
-	public User findBySSO(final String sso) {
+	public User findByUsername(final String username) {
 		final Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("ssoId", sso));
+		crit.add(Restrictions.eq("username", username));
 
 		final User user = (User) crit.uniqueResult();
 		if (user != null) {
@@ -44,9 +44,9 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	}
 
 	@Override
-	public void deleteBySSO(final String sso) {
+	public void deleteByUsername(final String username) {
 		final Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("ssoId", sso));
+		crit.add(Restrictions.eq("username", username));
 		final User user = (User) crit.uniqueResult();
 
 		delete(user);
@@ -56,7 +56,7 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAllUsers() {
-		final Criteria criteria = createEntityCriteria().addOrder(Order.asc("firstName"));
+		final Criteria criteria = createEntityCriteria().addOrder(Order.asc("name"));
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 		final List<User> users = criteria.list();
 
