@@ -1,4 +1,4 @@
-package com.cesar.tcc.smartlibrary.service;
+package com.cesar.tcc.smartlibrary.iservice;
 
 import java.util.List;
 

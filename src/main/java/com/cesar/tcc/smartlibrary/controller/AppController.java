@@ -24,10 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.cesar.tcc.smartlibrary.iservice.UserProfileService;
+import com.cesar.tcc.smartlibrary.iservice.UserService;
 import com.cesar.tcc.smartlibrary.model.User;
 import com.cesar.tcc.smartlibrary.model.UserProfile;
-import com.cesar.tcc.smartlibrary.service.UserProfileService;
-import com.cesar.tcc.smartlibrary.service.UserService;
 
 @Controller
 @RequestMapping("/")

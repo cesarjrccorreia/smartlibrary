@@ -12,9 +12,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.cesar.tcc.smartlibrary.iservice.UserService;
 import com.cesar.tcc.smartlibrary.model.User;
 import com.cesar.tcc.smartlibrary.model.UserProfile;
-import com.cesar.tcc.smartlibrary.service.UserService;
 
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
