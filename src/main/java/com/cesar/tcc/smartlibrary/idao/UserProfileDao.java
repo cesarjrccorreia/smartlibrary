@@ -1,4 +1,4 @@
-package com.cesar.tcc.smartlibrary.dao;
+package com.cesar.tcc.smartlibrary.idao;
 
 import java.util.List;
 

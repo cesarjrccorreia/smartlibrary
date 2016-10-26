@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cesar.tcc.smartlibrary.dao.UserProfileDao;
+import com.cesar.tcc.smartlibrary.idao.UserProfileDao;
 import com.cesar.tcc.smartlibrary.iservice.UserProfileService;
 import com.cesar.tcc.smartlibrary.model.UserProfile;
 

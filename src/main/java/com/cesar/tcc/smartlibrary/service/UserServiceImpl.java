@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cesar.tcc.smartlibrary.dao.UserDao;
+import com.cesar.tcc.smartlibrary.idao.UserDao;
 import com.cesar.tcc.smartlibrary.iservice.UserService;
 import com.cesar.tcc.smartlibrary.model.User;
 
