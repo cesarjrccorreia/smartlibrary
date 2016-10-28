@@ -24,11 +24,9 @@
 		      		<tr>
 				        <th><spring:message code="label.name"/></th>
 				        <th><spring:message code="label.email"/></th>
-				        <th><spring:message code="label.code"/></th>
-				        <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+				        <th><spring:message code="label.username"/></th>
+				        <sec:authorize access="hasRole('Bibliotecaria')">
 				        	<th width="100"></th>
-				        </sec:authorize>
-				        <sec:authorize access="hasRole('ADMIN')">
 				        	<th width="100"></th>
 				        </sec:authorize>
 				        
@@ -42,8 +40,6 @@
 						<td>${user.username}</td>
 					    <sec:authorize access="hasRole('Bibliotecaria')">
 							<td><a href="<c:url value='/edit-user-${user.username}' />" class="btn btn-success custom-width">edit</a></td>
-				        </sec:authorize>
-				        <sec:authorize access="hasRole('Bibliotecaria')">
 							<td><a href="<c:url value='/delete-user-${user.username}' />" class="btn btn-danger custom-width">delete</a></td>
         				</sec:authorize>
 					</tr>
@@ -53,7 +49,7 @@
 		</div>
 		<sec:authorize access="hasRole('Bibliotecaria')">
 		 	<div class="well">
-		 		<a href="<c:url value='/newuser' />"><spring:message code="label.add.user"/></a>
+		 		<a href="<c:url value='/newuser' />"><spring:message code="msg.add.element" arguments="usuário"/></a>
 		 	</div>
 	 	</sec:authorize>
    	</div>

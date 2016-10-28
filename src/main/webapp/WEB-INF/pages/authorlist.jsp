@@ -18,33 +18,29 @@
 		<%@include file="authheader.jsp" %>	
 		<div class="panel panel-default">
 			  <!-- Default panel contents -->
-		  	<div class="panel-heading"><span class="lead"><spring:message code="label.list.user"/> </span></div>
+		  	<div class="panel-heading"><span class="lead"><spring:message code="label.list.author"/> </span></div>
 			<table class="table table-hover">
 	    		<thead>
 		      		<tr>
 				        <th><spring:message code="label.code"/></th>
 				        <th><spring:message code="label.name"/></th>
-				        <th><spring:message code="label.username"/></th>
-				        <sec:authorize access="hasRole('ADMIN') or hasRole('DBA')">
+				        <sec:authorize access="hasRole('Bibliotecaria')">
 				        	<th width="100"></th>
 				        </sec:authorize>
-				        <sec:authorize access="hasRole('ADMIN')">
+				        <sec:authorize access="hasRole('Bibliotecaria')">
 				        	<th width="100"></th>
 				        </sec:authorize>
 				        
 					</tr>
 		    	</thead>
 	    		<tbody>
-				<c:forEach items="${users}" var="user">
+				<c:forEach items="${authors}" var="author">
 					<tr>
-						<td>${user.name}</td>
-						<td>${user.email}</td>
-						<td>${user.username}</td>
+						<td>${author.id}</td>
+						<td>${author.name}</td>
 					    <sec:authorize access="hasRole('Bibliotecaria')">
-							<td><a href="<c:url value='/edit-user-${user.username}' />" class="btn btn-success custom-width">edit</a></td>
-				        </sec:authorize>
-				        <sec:authorize access="hasRole('Bibliotecaria')">
-							<td><a href="<c:url value='/delete-user-${user.username}' />" class="btn btn-danger custom-width">delete</a></td>
+							<td><a href="<c:url value='/edit-author-${author.name}' />" class="btn btn-success custom-width">edit</a></td>
+							<td><a href="<c:url value='/delete-author-${author.name}' />" class="btn btn-danger custom-width">delete</a></td>
         				</sec:authorize>
 					</tr>
 				</c:forEach>
@@ -53,7 +49,7 @@
 		</div>
 		<sec:authorize access="hasRole('Bibliotecaria')">
 		 	<div class="well">
-		 		<a href="<c:url value='/newuser' />"><spring:message code="label.add.user"/></a>
+		 		<a href="<c:url value='/newauthor' />"><spring:message code="msg.add.element" arguments="label.author"/></a>
 		 	</div>
 	 	</sec:authorize>
    	</div>

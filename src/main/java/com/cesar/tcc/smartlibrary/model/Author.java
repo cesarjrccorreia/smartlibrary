@@ -31,7 +31,7 @@ public class Author implements Serializable {
 	private Integer id;
 
 	@NotNull
-	@Column(name = "nome")
+	@Column(name = "name")
 	private String name;
 
 	/**
