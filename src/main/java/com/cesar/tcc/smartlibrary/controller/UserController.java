@@ -34,18 +34,27 @@ public class UserController extends AppController {
 		return "userslist";
 	}
 
+	@RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
+	public String newUser(final ModelMap model) {
+		final User user = new User();
+		model.addAttribute("user", user);
+		model.addAttribute("edit", false);
+		model.addAttribute("loggedinuser", getPrincipal());
+		return "formUser";
+	}
+
 	@RequestMapping(value = { "/newuser" }, method = RequestMethod.POST)
 	public String saveUser(@Valid final User user, final BindingResult result, final ModelMap model) {
 
 		if (result.hasErrors()) {
-			return "registration";
+			return "formUser";
 		}
 
 		if (!userService.isUsernameUnique(user.getId(), user.getUsername())) {
 			final FieldError usernameError = new FieldError("user", "username", messageSource
 					.getMessage("non.unique.username", new String[] { user.getUsername() }, Locale.getDefault()));
 			result.addError(usernameError);
-			return "registration";
+			return "formUser";
 		}
 
 		userService.saveUser(user);
@@ -62,7 +71,7 @@ public class UserController extends AppController {
 		model.addAttribute("user", user);
 		model.addAttribute("edit", true);
 		model.addAttribute("loggedinuser", getPrincipal());
-		return "registration";
+		return "formUser";
 	}
 
 	@RequestMapping(value = { "/edit-user-{username}" }, method = RequestMethod.POST)
@@ -70,7 +79,7 @@ public class UserController extends AppController {
 			@PathVariable final String username) {
 
 		if (result.hasErrors()) {
-			return "registration";
+			return "formUser";
 		}
 
 		userService.updateUser(user);

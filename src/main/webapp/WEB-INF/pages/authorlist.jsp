@@ -49,7 +49,7 @@
 		</div>
 		<sec:authorize access="hasRole('Bibliotecaria')">
 		 	<div class="well">
-		 		<a href="<c:url value='/newauthor' />"><spring:message code="msg.add.element" arguments="label.author"/></a>
+		 		<a href="<c:url value='/authors/new' />"><spring:message code="msg.add.element" arguments="autor"/></a>
 		 	</div>
 	 	</sec:authorize>
    	</div>

@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.cesar.tcc.smartlibrary.iservice.UserProfileService;
-import com.cesar.tcc.smartlibrary.model.User;
 import com.cesar.tcc.smartlibrary.model.UserProfile;
 
 @SessionAttributes("roles")
@@ -36,15 +35,6 @@ public class AppController {
 
 	@Autowired
 	AuthenticationTrustResolver authenticationTrustResolver;
-
-	@RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
-	public String newUser(final ModelMap model) {
-		final User user = new User();
-		model.addAttribute("user", user);
-		model.addAttribute("edit", false);
-		model.addAttribute("loggedinuser", getPrincipal());
-		return "registration";
-	}
 
 	/**
 	 * This method will provide UserProfile list to views
