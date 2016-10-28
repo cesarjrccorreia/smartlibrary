@@ -24,10 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.cesar.tcc.smartlibrary.iservice.AuthorService;
 import com.cesar.tcc.smartlibrary.iservice.UserProfileService;
 import com.cesar.tcc.smartlibrary.iservice.UserService;
-import com.cesar.tcc.smartlibrary.model.Author;
 import com.cesar.tcc.smartlibrary.model.User;
 import com.cesar.tcc.smartlibrary.model.UserProfile;
 
@@ -38,9 +36,6 @@ public class AppController {
 
 	@Autowired
 	UserService userService;
-
-	@Autowired
-	AuthorService authorService;
 
 	@Autowired
 	UserProfileService userProfileService;
@@ -62,16 +57,6 @@ public class AppController {
 		model.addAttribute("loggedinuser", getPrincipal());
 
 		return "userslist";
-	}
-
-	@RequestMapping(value = { "/authors" }, method = RequestMethod.GET)
-	public String listAuthor(final ModelMap model) {
-
-		final List<Author> authors = authorService.findAll();
-		model.addAttribute("authors", authors);
-		model.addAttribute("loggedinuser", getPrincipal());
-
-		return "authorlist";
 	}
 
 	@RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
@@ -195,7 +180,7 @@ public class AppController {
 		return "redirect:/login?logout";
 	}
 
-	private Object getPrincipal() {
+	protected Object getPrincipal() {
 		String userName = null;
 		final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
@@ -208,7 +193,7 @@ public class AppController {
 		return userName;
 	}
 
-	private boolean isCurrentAuthenticationAnonymous() {
+	protected boolean isCurrentAuthenticationAnonymous() {
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		return authenticationTrustResolver.isAnonymous(authentication);
 	}
