@@ -54,11 +54,13 @@ public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> findAllUsers() {
+
 		final Criteria criteria = createEntityCriteria().addOrder(Order.asc("name"));
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+
+		@SuppressWarnings("unchecked")
 		final List<User> users = criteria.list();
 
 		return users;

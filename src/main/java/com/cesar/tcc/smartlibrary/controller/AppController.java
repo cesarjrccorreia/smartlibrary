@@ -24,8 +24,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import com.cesar.tcc.smartlibrary.iservice.AuthorService;
 import com.cesar.tcc.smartlibrary.iservice.UserProfileService;
 import com.cesar.tcc.smartlibrary.iservice.UserService;
+import com.cesar.tcc.smartlibrary.model.Author;
 import com.cesar.tcc.smartlibrary.model.User;
 import com.cesar.tcc.smartlibrary.model.UserProfile;
 
@@ -36,6 +38,9 @@ public class AppController {
 
 	@Autowired
 	UserService userService;
+
+	@Autowired
+	AuthorService authorService;
 
 	@Autowired
 	UserProfileService userProfileService;
@@ -59,6 +64,16 @@ public class AppController {
 		return "userslist";
 	}
 
+	@RequestMapping(value = { "/authors" }, method = RequestMethod.GET)
+	public String listAuthor(final ModelMap model) {
+
+		final List<Author> authors = authorService.findAll();
+		model.addAttribute("authors", authors);
+		model.addAttribute("loggedinuser", getPrincipal());
+
+		return "authorlist";
+	}
+
 	@RequestMapping(value = { "/newuser" }, method = RequestMethod.GET)
 	public String newUser(final ModelMap model) {
 		final User user = new User();
@@ -79,16 +94,6 @@ public class AppController {
 			return "registration";
 		}
 
-		/*
-		 * Preferred way to achieve uniqueness of field [sso] should be
-		 * implementing custom @Unique annotation and applying it on field [sso]
-		 * of Model class [User].
-		 * 
-		 * Below mentioned peace of code [if block] is to demonstrate that you
-		 * can fill custom errors outside the validation framework as well while
-		 * still using internationalized messages.
-		 * 
-		 */
 		if (!userService.isUsernameUnique(user.getId(), user.getUsername())) {
 			final FieldError usernameError = new FieldError("user", "username", messageSource
 					.getMessage("non.unique.username", new String[] { user.getUsername() }, Locale.getDefault()));
@@ -127,17 +132,6 @@ public class AppController {
 		if (result.hasErrors()) {
 			return "registration";
 		}
-
-		/*
-		 * //Uncomment below 'if block' if you WANT TO ALLOW UPDATING SSO_ID in
-		 * UI which is a unique key to a User.
-		 * if(!userService.isUserSSOUnique(user.getId(), user.getusername())){
-		 * FieldError ssoError =new
-		 * FieldError("user","username",messageSource.getMessage(
-		 * "non.unique.username", new String[]{user.getusername()},
-		 * Locale.getDefault())); result.addError(ssoError); return
-		 * "registration"; }
-		 */
 
 		userService.updateUser(user);
 
