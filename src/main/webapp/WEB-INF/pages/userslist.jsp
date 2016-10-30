@@ -4,16 +4,8 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-<html>
+<jsp:include page="header.jsp" />
 
-<head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Users List</title>
-	<link href="<c:url value='/resources/static/css/bootstrap.min.css' />" rel="stylesheet"></link>
-	<link href="<c:url value='/resources/static/css/smartlibrary.css' />" rel="stylesheet"></link>
-</head>
-
-<body>
 	<div class="generic-container">
 	
 		<div class="authbar">
@@ -62,5 +54,5 @@
 		 	</div>
 	 	</sec:authorize>
    	</div>
-</body>
-</html>
+   	
+<jsp:include page="footer.jsp" />

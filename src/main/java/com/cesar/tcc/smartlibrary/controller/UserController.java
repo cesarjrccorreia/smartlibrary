@@ -60,7 +60,9 @@ public class UserController extends AppController {
 
 		userService.saveUser(user);
 
-		redirect.addFlashAttribute("success", "User " + user.getName() + " registered successfully");
+		final String[] parameters = new String[] { user.getName() };
+		final Locale locale = Locale.getDefault();
+		redirect.addFlashAttribute("success", messageSource.getMessage("msg.user.saved", parameters, locale));
 
 		return "redirect:/list";
 	}
@@ -85,7 +87,9 @@ public class UserController extends AppController {
 
 		userService.updateUser(user);
 
-		redirect.addFlashAttribute("success", "User " + user.getName() + " registered successfully");
+		final String[] parameters = new String[] { user.getName() };
+		final Locale locale = Locale.getDefault();
+		redirect.addFlashAttribute("success", messageSource.getMessage("msg.user.updated", parameters, locale));
 
 		return "redirect:/list";
 	}
