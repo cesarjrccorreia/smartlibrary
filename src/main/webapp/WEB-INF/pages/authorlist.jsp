@@ -7,6 +7,13 @@
 <jsp:include page="header.jsp" />
 
 	<div class="generic-container">
+	
+		<c:if test="${not empty success }">
+			<div class="alert alert-success lead">
+		    	${success}
+			</div>
+		</c:if>
+		
 		<div class="panel panel-default">
 			  <!-- Default panel contents -->
 		  	<div class="panel-heading"><span class="lead"><spring:message code="label.list.author"/> </span></div>
@@ -30,8 +37,8 @@
 						<td>${author.id}</td>
 						<td>${author.name}</td>
 					    <sec:authorize access="hasRole('Bibliotecaria')">
-							<td><a href="<c:url value='/edit-author-${author.name}' />" class="btn btn-success custom-width">edit</a></td>
-							<td><a href="<c:url value='/delete-author-${author.name}' />" class="btn btn-danger custom-width">delete</a></td>
+							<td><a href="<c:url value='/authors/edit-${author.name}' />" class="btn btn-success custom-width"><spring:message code="label.edit" /></a></td>
+							<td><a href="<c:url value='/authors/delete-${author.name}' />" class="btn btn-danger custom-width"><spring:message code="label.delete" /></a></td>
         				</sec:authorize>
 					</tr>
 				</c:forEach>

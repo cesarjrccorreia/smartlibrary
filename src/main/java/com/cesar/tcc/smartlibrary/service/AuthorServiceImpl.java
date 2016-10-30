@@ -53,7 +53,7 @@ public class AuthorServiceImpl implements AuthorService {
 	}
 
 	@Override
-	public void updateUser(final Author author) {
+	public void updateAuthor(final Author author) {
 
 		final Author entity = authorDao.findById(author.getId());
 

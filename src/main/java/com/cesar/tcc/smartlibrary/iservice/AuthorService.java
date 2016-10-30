@@ -18,6 +18,6 @@ public interface AuthorService {
 
 	boolean isNameUnique(final Integer id, final String name);
 
-	void updateUser(final Author author);
+	void updateAuthor(final Author author);
 
 }
