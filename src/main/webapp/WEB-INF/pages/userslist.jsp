@@ -15,7 +15,16 @@
 
 <body>
 	<div class="generic-container">
-		<%@include file="authheader.jsp" %>	
+	
+		<div class="authbar">
+			<span><strong>${loggedinuser}</strong>, Seja Bem-Vindo.</span> <span class="floatRight"><a href="<c:url value="/logout" />"><spring:message code="label.button.logout"/></a></span>
+		</div>
+		
+		<c:if test="${not empty success }">
+			<div class="alert alert-success lead">
+		    	${success}
+			</div>
+		</c:if>
 		<div class="panel panel-default">
 			  <!-- Default panel contents -->
 		  	<div class="panel-heading"><span class="lead"><spring:message code="label.list.user"/></span></div>

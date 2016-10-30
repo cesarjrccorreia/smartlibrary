@@ -13,6 +13,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.iservice.UserService;
 import com.cesar.tcc.smartlibrary.model.User;
@@ -44,7 +45,7 @@ public class UserController extends AppController {
 	}
 
 	@RequestMapping(value = { "/newuser" }, method = RequestMethod.POST)
-	public String saveUser(@Valid final User user, final BindingResult result, final ModelMap model) {
+	public String saveUser(@Valid final User user, final BindingResult result, final RedirectAttributes redirect) {
 
 		if (result.hasErrors()) {
 			return "formUser";
@@ -59,10 +60,9 @@ public class UserController extends AppController {
 
 		userService.saveUser(user);
 
-		model.addAttribute("success", "User " + user.getName() + " registered successfully");
-		model.addAttribute("loggedinuser", getPrincipal());
-		// return "success";
-		return "registrationsuccess";
+		redirect.addFlashAttribute("success", "User " + user.getName() + " registered successfully");
+
+		return "redirect:/list";
 	}
 
 	@RequestMapping(value = { "/edit-user-{username}" }, method = RequestMethod.GET)
@@ -71,11 +71,12 @@ public class UserController extends AppController {
 		model.addAttribute("user", user);
 		model.addAttribute("edit", true);
 		model.addAttribute("loggedinuser", getPrincipal());
+
 		return "formUser";
 	}
 
 	@RequestMapping(value = { "/edit-user-{username}" }, method = RequestMethod.POST)
-	public String updateUser(@Valid final User user, final BindingResult result, final ModelMap model,
+	public String updateUser(@Valid final User user, final BindingResult result, final RedirectAttributes redirect,
 			@PathVariable final String username) {
 
 		if (result.hasErrors()) {
@@ -84,14 +85,20 @@ public class UserController extends AppController {
 
 		userService.updateUser(user);
 
-		model.addAttribute("success", "User " + user.getName() + " updated successfully");
-		model.addAttribute("loggedinuser", getPrincipal());
-		return "registrationsuccess";
+		redirect.addFlashAttribute("success", "User " + user.getName() + " registered successfully");
+
+		return "redirect:/list";
 	}
 
 	@RequestMapping(value = { "/delete-user-{username}" }, method = RequestMethod.GET)
-	public String deleteUser(@PathVariable final String username) {
+	public String deleteUser(@PathVariable final String username, final RedirectAttributes redirect) {
 		userService.deleteUserByUsername(username);
+
+		final String[] strings = new String[] { username };
+		final Locale locale = Locale.getDefault();
+
+		redirect.addFlashAttribute("success", messageSource.getMessage("msg.delete.success", strings, locale));
+
 		return "redirect:/list";
 	}
 
