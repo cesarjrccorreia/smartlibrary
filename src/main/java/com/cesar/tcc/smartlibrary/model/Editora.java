@@ -29,22 +29,22 @@ public class Editora implements Serializable {
 	/**
 	 * 
 	 */
-	@Column(name = "nome")
+	@Column(name = "name")
 	@NotNull
-	private String nome;
+	private String name;
 
 	/**
 	 * @return
 	 */
-	public String getNome() {
-		return nome;
+	public String getName() {
+		return name;
 	}
 
 	/**
-	 * @param nome
+	 * @param name
 	 */
-	public void setNome(final String nome) {
-		this.nome = nome;
+	public void setName(final String name) {
+		this.name = name;
 	}
 
 	/**
