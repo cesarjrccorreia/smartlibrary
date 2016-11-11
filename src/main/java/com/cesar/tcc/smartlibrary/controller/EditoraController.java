@@ -17,50 +17,58 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.iservice.EditoraService;
 import com.cesar.tcc.smartlibrary.model.Editora;
+import com.cesar.tcc.smartlibrary.utilities.Constants;
 
 @Controller(value = "editoraController")
 @RequestMapping(value = "editoras")
-public class EditoraController extends AppController {
+public class EditoraController extends AppController
+{
 
 	@Autowired
 	private EditoraService editoraService;
 
 	@RequestMapping
-	public String listAll(final ModelMap model) {
+	public String listAll(final ModelMap model)
+	{
 
 		final List<Editora> editoras = editoraService.findAll();
 		model.addAttribute("editoras", editoras);
 		model.addAttribute("loggedinuser", getPrincipal());
 
-		return "editoras";
+		return Constants.EDITORA_PAGE;
 	}
 
 	@RequestMapping(value = { "/new" }, method = RequestMethod.GET)
-	public String newEditora(final ModelMap model) {
+	public String newEditora(final ModelMap model)
+	{
 
 		final Editora editora = new Editora();
 		model.addAttribute("editora", editora);
 		model.addAttribute("edit", false);
 		model.addAttribute("loggedinuser", getPrincipal());
 
-		return "formEditora";
+		return Constants.FORM_EDITORA;
 	}
 
 	@RequestMapping(value = { "/new" }, method = RequestMethod.POST)
-	public String save(@Valid final Editora editora, final BindingResult result, final RedirectAttributes redirect) {
+	public String save(@Valid final Editora editora, final BindingResult result, final RedirectAttributes redirect)
+	{
 
-		if (result.hasErrors()) {
-			return "formEditora";
+		if (result.hasErrors())
+		{
+			return Constants.FORM_EDITORA;
 		}
 
 		final Locale locale = Locale.getDefault();
 		final boolean isNameUnique = editoraService.isNameUnique(editora.getId(), editora.getName());
 
-		if (!isNameUnique) {
+		if (!isNameUnique)
+		{
 			final FieldError usernameError = new FieldError("user", "username",
 					messageSource.getMessage("non.unique.username", new String[] { editora.getName() }, locale));
 			result.addError(usernameError);
-			return "formEditora";
+
+			return Constants.FORM_EDITORA;
 		}
 
 		editoraService.save(editora);
@@ -68,23 +76,28 @@ public class EditoraController extends AppController {
 
 		redirect.addFlashAttribute("success", messageSource.getMessage("msg.saved", arguments, locale));
 
-		return "redirect:/editoras";
+		final String redirectMsg = String.format("redirect:/%s", Constants.EDITORA_PAGE);
+
+		return redirectMsg;
 	}
 
 	@RequestMapping(value = { "/edit-{name}" }, method = RequestMethod.GET)
-	public String edit(@PathVariable final String name, final ModelMap model) {
+	public String edit(@PathVariable final String name, final ModelMap model)
+	{
 		final Editora editora = editoraService.findByName(name);
 		model.addAttribute("editora", editora);
 		model.addAttribute("edit", true);
 
-		return "formEditora";
+		return Constants.FORM_EDITORA;
 	}
 
 	@RequestMapping(value = { "/edit-{name}" }, method = RequestMethod.POST)
-	public String update(@Valid final Editora editora, final BindingResult result, final RedirectAttributes redirect) {
+	public String update(@Valid final Editora editora, final BindingResult result, final RedirectAttributes redirect)
+	{
 
-		if (result.hasErrors()) {
-			return "formEditora";
+		if (result.hasErrors())
+		{
+			return Constants.FORM_EDITORA;
 		}
 
 		editoraService.update(editora);
@@ -93,11 +106,14 @@ public class EditoraController extends AppController {
 		final Locale locale = Locale.getDefault();
 		redirect.addFlashAttribute("success", messageSource.getMessage("msg.updated", parameters, locale));
 
-		return "redirect:/editoras";
+		final String redirectMsg = String.format("redirect:/%s", Constants.EDITORA_PAGE);
+
+		return redirectMsg;
 	}
 
 	@RequestMapping(value = { "/delete-{name}" }, method = RequestMethod.GET)
-	public String deleteAuthor(@PathVariable final String name, final RedirectAttributes redirect) {
+	public String deleteAuthor(@PathVariable final String name, final RedirectAttributes redirect)
+	{
 
 		editoraService.deleteByName(name);
 
@@ -105,7 +121,9 @@ public class EditoraController extends AppController {
 
 		redirect.addFlashAttribute("success", messageSource.getMessage("msg.deleted", null, locale));
 
-		return "redirect:/editoras";
+		final String redirectMsg = String.format("redirect:/%s", Constants.EDITORA_PAGE);
+
+		return redirectMsg;
 	}
 
 }

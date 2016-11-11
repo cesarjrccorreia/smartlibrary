@@ -1,3 +1,4 @@
+<%@page import="com.cesar.tcc.smartlibrary.utilities.Constants"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -9,7 +10,13 @@
 	<div class="generic-container">
 	
 		<div class="authbar">
-			<span><strong>${loggedinuser}</strong>, Seja Bem-Vindo.</span> <span class="floatRight"><a href="<c:url value="/logout" />"><spring:message code="label.button.logout"/></a></span>
+			<span>
+				<strong>${loggedinuser}</strong>, Seja Bem-Vindo.
+			</span>
+			<span class="floatRight">
+				<a href="<c:url value='/' />"><spring:message code="label.main"/></a><br/>
+				<a href="<c:url value="/logout" />"><spring:message code="label.button.logout"/></a>
+			</span>
 		</div>
 		
 		<c:if test="${not empty success }">

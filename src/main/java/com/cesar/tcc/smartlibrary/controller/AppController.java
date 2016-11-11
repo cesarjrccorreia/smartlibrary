@@ -22,7 +22,8 @@ import com.cesar.tcc.smartlibrary.iservice.UserProfileService;
 import com.cesar.tcc.smartlibrary.model.UserProfile;
 
 @SessionAttributes("roles")
-public class AppController {
+public class AppController
+{
 
 	@Autowired
 	UserProfileService userProfileService;
@@ -40,7 +41,8 @@ public class AppController {
 	 * This method will provide UserProfile list to views
 	 */
 	@ModelAttribute("roles")
-	public List<UserProfile> initializeProfiles() {
+	public List<UserProfile> initializeProfiles()
+	{
 		return userProfileService.findAll();
 	}
 
@@ -48,7 +50,8 @@ public class AppController {
 	 * This method handles Access-Denied redirect.
 	 */
 	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
-	public String accessDeniedPage(final ModelMap model) {
+	public String accessDeniedPage(final ModelMap model)
+	{
 		model.addAttribute("loggedinuser", getPrincipal());
 		return "accessDenied";
 	}
@@ -58,11 +61,14 @@ public class AppController {
 	 * tries to goto login page again, will be redirected to list page.
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public String loginPage() {
-		if (isCurrentAuthenticationAnonymous()) {
+	public String loginPage()
+	{
+		if (isCurrentAuthenticationAnonymous())
+		{
 			return "login";
-		} else {
-			return "redirect:/list";
+		} else
+		{
+			return "redirect:/";
 		}
 	}
 
@@ -71,31 +77,35 @@ public class AppController {
 	 * RememberMe functionality is useless in your app.
 	 */
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logoutPage(final HttpServletRequest request, final HttpServletResponse response) {
+	public String logoutPage(final HttpServletRequest request, final HttpServletResponse response)
+	{
 		final Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-		if (auth != null) {
-			// new SecurityContextLogoutHandler().logout(request, response,
-			// auth);
+		if (auth != null)
+		{
 			persistentTokenBasedRememberMeServices.logout(request, response, auth);
 			SecurityContextHolder.getContext().setAuthentication(null);
 		}
 		return "redirect:/login?logout";
 	}
 
-	protected Object getPrincipal() {
+	protected Object getPrincipal()
+	{
 		String userName = null;
 		final Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		if (principal instanceof UserDetails) {
+		if (principal instanceof UserDetails)
+		{
 			userName = ((UserDetails) principal).getUsername();
-		} else {
+		} else
+		{
 			userName = principal.toString();
 		}
 
 		return userName;
 	}
 
-	protected boolean isCurrentAuthenticationAnonymous() {
+	protected boolean isCurrentAuthenticationAnonymous()
+	{
 		final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		return authenticationTrustResolver.isAnonymous(authentication);
 	}

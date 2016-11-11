@@ -17,49 +17,56 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.iservice.AuthorService;
 import com.cesar.tcc.smartlibrary.model.Author;
+import com.cesar.tcc.smartlibrary.utilities.Constants;
 
 @Controller(value = "authorController")
 @RequestMapping(value = "/authors")
-public class AuthorController extends AppController {
+public class AuthorController extends AppController
+{
 
 	@Autowired
 	AuthorService authorService;
 
 	@RequestMapping
-	public String listAuthor(final ModelMap model) {
+	public String listAuthor(final ModelMap model)
+	{
 
 		final List<Author> authors = authorService.findAll();
 		model.addAttribute("authors", authors);
 		model.addAttribute("loggedinuser", getPrincipal());
 
-		return "authorlist";
+		return Constants.AUTHOR_PAGE;
 	}
 
 	@RequestMapping(value = { "/new" }, method = RequestMethod.GET)
-	public String newAuthor(final ModelMap model) {
+	public String newAuthor(final ModelMap model)
+	{
 
 		final Author author = new Author();
 		model.addAttribute("author", author);
 		model.addAttribute("edit", false);
 		model.addAttribute("loggedinuser", getPrincipal());
 
-		return "formAuthor";
+		return Constants.FORM_AUTHOR;
 	}
 
 	@RequestMapping(value = { "/new" }, method = RequestMethod.POST)
-	public String saveAuthor(@Valid final Author author, final BindingResult result,
-			final RedirectAttributes redirect) {
+	public String saveAuthor(@Valid final Author author, final BindingResult result, final RedirectAttributes redirect)
+	{
 
-		if (result.hasErrors()) {
-			return "formAuthor";
+		if (result.hasErrors())
+		{
+			return Constants.FORM_AUTHOR;
 		}
 
 		final Locale locale = Locale.getDefault();
-		if (!authorService.isNameUnique(author.getId(), author.getName())) {
+		if (!authorService.isNameUnique(author.getId(), author.getName()))
+		{
 			final FieldError usernameError = new FieldError("user", "username",
 					messageSource.getMessage("non.unique.username", new String[] { author.getName() }, locale));
 			result.addError(usernameError);
-			return "formAuthor";
+
+			return Constants.FORM_AUTHOR;
 		}
 
 		authorService.save(author);
@@ -67,24 +74,28 @@ public class AuthorController extends AppController {
 
 		redirect.addFlashAttribute("success", messageSource.getMessage("msg.saved", arguments, locale));
 
-		return "redirect:/authors";
+		final String redirectMsg = String.format("redirect:/%s", Constants.AUTHOR_PAGE);
+		return redirectMsg;
 	}
 
 	@RequestMapping(value = { "/edit-{name}" }, method = RequestMethod.GET)
-	public String editAuthor(@PathVariable final String name, final ModelMap model) {
+	public String editAuthor(@PathVariable final String name, final ModelMap model)
+	{
 		final Author author = authorService.findByName(name);
 		model.addAttribute("author", author);
 		model.addAttribute("edit", true);
 
-		return "formAuthor";
+		return Constants.FORM_AUTHOR;
 	}
 
 	@RequestMapping(value = { "/edit-{name}" }, method = RequestMethod.POST)
 	public String updateAuthor(@Valid final Author author, final BindingResult result,
-			final RedirectAttributes redirect) {
+			final RedirectAttributes redirect)
+	{
 
-		if (result.hasErrors()) {
-			return "formAuthor";
+		if (result.hasErrors())
+		{
+			return Constants.FORM_AUTHOR;
 		}
 
 		authorService.updateAuthor(author);
@@ -93,11 +104,13 @@ public class AuthorController extends AppController {
 		final Locale locale = Locale.getDefault();
 		redirect.addFlashAttribute("success", messageSource.getMessage("msg.updated", parameters, locale));
 
-		return "redirect:/authors";
+		final String redirectMsg = String.format("redirect:/%s", Constants.AUTHOR_PAGE);
+		return redirectMsg;
 	}
 
 	@RequestMapping(value = { "/delete-{name}" }, method = RequestMethod.GET)
-	public String deleteAuthor(@PathVariable final String name, final RedirectAttributes redirect) {
+	public String deleteAuthor(@PathVariable final String name, final RedirectAttributes redirect)
+	{
 
 		authorService.deleteByName(name);
 
@@ -105,7 +118,8 @@ public class AuthorController extends AppController {
 
 		redirect.addFlashAttribute("success", messageSource.getMessage("msg.deleted", null, locale));
 
-		return "redirect:/authors";
+		final String redirectMsg = String.format("redirect:/%s", Constants.AUTHOR_PAGE);
+		return redirectMsg;
 	}
 
 }
