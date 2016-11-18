@@ -182,7 +182,7 @@ CREATE INDEX IFK_Rel_31 ON disciplinas_matriculadas (user_id);
 CREATE TABLE informe (
   id SERIAL   NOT NULL ,
   user_id INTEGER   NOT NULL ,
-  texto INTEGER      ,
+  texto VARCHAR NOT NULL     ,
 PRIMARY KEY(id)  ,
   FOREIGN KEY(user_id)
     REFERENCES app_user(id));
