@@ -73,7 +73,7 @@ CREATE TABLE livro (
   sumario VARCHAR   NOT NULL ,
   imagem VARCHAR    ,
   quantidade INTEGER   NOT NULL ,
-  classificacao INTEGER      ,
+  classificacao NUMERIC      ,
 PRIMARY KEY(id)  ,
   FOREIGN KEY(editora_id)
     REFERENCES editora(id));
