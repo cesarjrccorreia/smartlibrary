@@ -8,6 +8,16 @@
 <jsp:include page="header.jsp" />
 
 	<div class="container">
+		<header>
+		</header>
+		<div id="center">
+		
+		</div>
+		<div id="recommender">
+		
+		</div>
+		<div id="">
+		</div>
 		<h1>Olá</h1>
 		<label>Selecine a área de cadastro que deseja ir:</label><br/>
 		<a href="<c:url value='<%= Constants.USER_PAGE %>' />"><spring:message code="label.user"/></a><br/>
