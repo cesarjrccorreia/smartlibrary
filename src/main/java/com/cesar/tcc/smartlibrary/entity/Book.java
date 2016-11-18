@@ -1,6 +1,7 @@
 package com.cesar.tcc.smartlibrary.entity;
 
 import java.io.Serializable;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -43,6 +46,8 @@ public class Book implements Serializable
 	private Integer quantidade;
 
 	private Double classificacao;
+
+	private Set<Author> authors;
 
 	/**
 	 * @return the id
@@ -238,6 +243,25 @@ public class Book implements Serializable
 	public void setClassificacao(final Double classificacao)
 	{
 		this.classificacao = classificacao;
+	}
+
+	/**
+	 * @return
+	 */
+	@ManyToMany
+	@JoinTable(name = "autor_has_livro", joinColumns = @JoinColumn(name = "livro_id"),
+			inverseJoinColumns = @JoinColumn(name = " autor_id "))
+	public Set<Author> getAuthors()
+	{
+		return authors;
+	}
+
+	/**
+	 * @param authors
+	 */
+	public void setAuthors(final Set<Author> authors)
+	{
+		this.authors = authors;
 	}
 
 }
