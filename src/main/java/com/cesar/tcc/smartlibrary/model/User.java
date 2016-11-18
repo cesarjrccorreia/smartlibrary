@@ -2,6 +2,7 @@ package com.cesar.tcc.smartlibrary.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -19,89 +20,118 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "APP_USER")
-public class User implements Serializable {
+public class User implements Serializable
+{
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@NotEmpty
-	@Column(name = "username", unique = true, nullable = false)
 	private String username;
 
-	@NotEmpty
-	@Column(name = "password", nullable = false)
 	private String password;
 
-	@NotEmpty
-	@Column(name = "name", nullable = false)
 	private String name;
 
-	@NotEmpty
-	@Column(name = "email", nullable = false)
 	private String email;
 
-	@NotEmpty
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "USER_HAS_USER_PROFILE", joinColumns = { @JoinColumn(name = "USER_ID") }, inverseJoinColumns = {
-			@JoinColumn(name = "USER_PROFILE_ID") })
 	private Set<UserProfile> userProfiles = new HashSet<>();
 
-	public Integer getId() {
+	private List<Disciplina> disciplinas;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	public Integer getId()
+	{
 		return id;
 	}
 
-	public void setId(final Integer id) {
+	public void setId(final Integer id)
+	{
 		this.id = id;
 	}
 
-	public String getUsername() {
+	@NotEmpty
+	@Column(name = "username", unique = true, nullable = false)
+	public String getUsername()
+	{
 		return username;
 	}
 
-	public void setUsername(final String username) {
+	public void setUsername(final String username)
+	{
 		this.username = username;
 	}
 
-	public String getPassword() {
+	@NotEmpty
+	@Column(name = "password", nullable = false)
+	public String getPassword()
+	{
 		return password;
 	}
 
-	public void setPassword(final String password) {
+	public void setPassword(final String password)
+	{
 		this.password = password;
 	}
 
-	public String getName() {
+	@NotEmpty
+	@Column(name = "name", nullable = false)
+	public String getName()
+	{
 		return name;
 	}
 
-	public void setName(final String name) {
+	public void setName(final String name)
+	{
 		this.name = name;
 	}
 
-	public String getEmail() {
+	@NotEmpty
+	@Column(name = "email", nullable = false)
+	public String getEmail()
+	{
 		return email;
 	}
 
-	public void setEmail(final String email) {
+	public void setEmail(final String email)
+	{
 		this.email = email;
 	}
 
-	public Set<UserProfile> getUserProfiles() {
+	@NotEmpty
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "USER_HAS_USER_PROFILE", joinColumns = { @JoinColumn(name = "USER_ID") },
+			inverseJoinColumns = { @JoinColumn(name = "USER_PROFILE_ID") })
+	public Set<UserProfile> getUserProfiles()
+	{
 		return userProfiles;
 	}
 
-	public void setUserProfiles(final Set<UserProfile> userProfiles) {
+	public void setUserProfiles(final Set<UserProfile> userProfiles)
+	{
 		this.userProfiles = userProfiles;
 	}
 
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "disciplinas_matriculadas", joinColumns = @JoinColumn(name = "usuario_id"),
+			inverseJoinColumns = @JoinColumn(name = " disciplina_id "))
+	public List<Disciplina> getDisciplinas()
+	{
+		return disciplinas;
+	}
+
+	public void setDisciplinas(final List<Disciplina> disciplinas)
+	{
+		this.disciplinas = disciplinas;
+	}
+
 	@Override
-	public int hashCode() {
+	public int hashCode()
+	{
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((id == null) ? 0 : id.hashCode());
@@ -111,32 +141,50 @@ public class User implements Serializable {
 	}
 
 	@Override
-	public boolean equals(final Object obj) {
+	public boolean equals(final Object obj)
+	{
 		if (this == obj)
+		{
 			return true;
+		}
 		if (obj == null)
+		{
 			return false;
+		}
 		if (!(obj instanceof User))
+		{
 			return false;
+		}
 
 		final User other = (User) obj;
-		if (id == null) {
+		if (id == null)
+		{
 			if (other.id != null)
+			{
 				return false;
+			}
 		} else if (!id.equals(other.id))
+		{
 			return false;
+		}
 
-		if (username == null) {
+		if (username == null)
+		{
 			if (other.username != null)
+			{
 				return false;
+			}
 		} else if (!username.equals(other.username))
+		{
 			return false;
+		}
 
 		return true;
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		return "User [id=" + id + ", Username=" + username + ", Name=" + name + ", email=" + email + "]";
 	}
 

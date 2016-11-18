@@ -50,7 +50,7 @@ CREATE TABLE PERSISTENT_LOGINS (
 CREATE TABLE disciplina (
   id SERIAL   NOT NULL ,
   name VARCHAR   NOT NULL ,
-  ementa VARCHAR   NOT NULL   ,
+  ementa TEXT   NOT NULL   ,
 PRIMARY KEY(id));
 
 CREATE TABLE editora (
