@@ -1,3 +1,4 @@
+<%@page import="com.cesar.tcc.smartlibrary.utilities.Constants"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
@@ -59,7 +60,7 @@
 				<div class="form-group col-md-12">
 					<label class="col-md-3 control-lable" for="email"><spring:message code="label.email" /></label>
 					<div class="col-md-7">
-						<form:input type="text" path="email" id="email" class="form-control input-sm" />
+						<form:input type="email" path="email" id="email" class="form-control input-sm" />
 						<div class="has-error">
 							<form:errors path="email" class="help-inline"/>
 						</div>
@@ -84,11 +85,11 @@
 					<c:choose>
 						<c:when test="${edit}">
 							<input type="submit" value="<spring:message code="label.button.update" />" class="btn btn-primary btn-sm"/>
-							<a href="<c:url value='/list' />"><spring:message code="label.cancel" /></a>
+							<a href="<c:url value='/users' />"><spring:message code="label.cancel" /></a>
 						</c:when>
 						<c:otherwise>
 							<input type="submit" value="<spring:message code="label.button.save" />" class="btn btn-primary btn-sm"/>
-							<a href="<c:url value='/list' />"><spring:message code="label.cancel" /></a>
+							<a href="<c:url value='/users' />"><spring:message code="label.cancel" /></a>
 						</c:otherwise>
 					</c:choose>
 				</div>

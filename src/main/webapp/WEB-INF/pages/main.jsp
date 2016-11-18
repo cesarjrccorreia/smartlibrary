@@ -23,6 +23,7 @@
 		<a href="<c:url value='<%= Constants.USER_PAGE %>' />"><spring:message code="label.user"/></a><br/>
 		<a href="<c:url value='<%= Constants.AUTHOR_PAGE %>' />"><spring:message code="label.author"/></a><br/>
 		<a href="<c:url value='<%= Constants.EDITORA_PAGE %>' />"><spring:message code="label.editora"/></a><br/>
+		<a href="<c:url value='<%= Constants.BOOK_PAGE %>' />"><spring:message code="label.book"/></a><br/>
    	</div>
    	
 <jsp:include page="footer.jsp" />

@@ -5,6 +5,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,9 +14,11 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "livro")
@@ -35,17 +38,17 @@ public class Book implements Serializable
 
 	private String name;
 
-	private Integer ano;
+	private Integer year;
 
-	private String edicao;
+	private Integer edition;
 
-	private String sumario;
+	private String summary;
 
-	private String imagem;
+	private String image;
 
-	private Integer quantidade;
+	private Integer quantity;
 
-	private Double classificacao;
+	private Double rating;
 
 	private Set<Author> authors;
 
@@ -72,7 +75,7 @@ public class Book implements Serializable
 	 * @return the editora
 	 */
 	@ManyToOne
-	@JoinColumn(name = "editora_id")
+	@JoinColumn(name = "editora_id", nullable = false)
 	public Editora getEditora()
 	{
 		return editora;
@@ -92,6 +95,7 @@ public class Book implements Serializable
 	 */
 	@Column(name = "isbn")
 	@NotNull
+	@NotEmpty
 	public String getIsbn()
 	{
 		return isbn;
@@ -131,18 +135,19 @@ public class Book implements Serializable
 	 */
 	@Column(name = "ano")
 	@NotNull
-	public Integer getAno()
+	@Min(value = 1900)
+	public Integer getYear()
 	{
-		return ano;
+		return year;
 	}
 
 	/**
-	 * @param ano
+	 * @param year
 	 *            the ano to set
 	 */
-	public void setAno(final Integer ano)
+	public void setYear(final Integer year)
 	{
-		this.ano = ano;
+		this.year = year;
 	}
 
 	/**
@@ -150,19 +155,19 @@ public class Book implements Serializable
 	 */
 	@Column(name = "edicao")
 	@NotNull
-	@NotBlank
-	public String getEdicao()
+	@Min(value = 1)
+	public Integer getEdition()
 	{
-		return edicao;
+		return edition;
 	}
 
 	/**
-	 * @param edicao
+	 * @param edition
 	 *            the edicao to set
 	 */
-	public void setEdicao(final String edicao)
+	public void setEdition(final Integer edition)
 	{
-		this.edicao = edicao;
+		this.edition = edition;
 	}
 
 	/**
@@ -171,38 +176,36 @@ public class Book implements Serializable
 	@Column(name = "sumario")
 	@NotBlank
 	@NotNull
-	public String getSumario()
+	public String getSummary()
 	{
-		return sumario;
+		return summary;
 	}
 
 	/**
-	 * @param sumario
+	 * @param summary
 	 *            the sumario to set
 	 */
-	public void setSumario(final String sumario)
+	public void setSummary(final String summary)
 	{
-		this.sumario = sumario;
+		this.summary = summary;
 	}
 
 	/**
 	 * @return the imagem
 	 */
 	@Column(name = "imagem")
-	@NotBlank
-	@NotNull
-	public String getImagem()
+	public String getImage()
 	{
-		return imagem;
+		return image;
 	}
 
 	/**
-	 * @param imagem
+	 * @param image
 	 *            the imagem to set
 	 */
-	public void setImagem(final String imagem)
+	public void setImage(final String image)
 	{
-		this.imagem = imagem;
+		this.image = image;
 	}
 
 	/**
@@ -210,45 +213,44 @@ public class Book implements Serializable
 	 */
 	@Column(name = "quantidade")
 	@NotNull
-	@NotBlank
-	public Integer getQuantidade()
+	@Min(value = 1)
+	public Integer getQuantity()
 	{
-		return quantidade;
+		return quantity;
 	}
 
 	/**
-	 * @param quantidade
+	 * @param quantity
 	 *            the quantidade to set
 	 */
-	public void setQuantidade(final Integer quantidade)
+	public void setQuantity(final Integer quantity)
 	{
-		this.quantidade = quantidade;
+		this.quantity = quantity;
 	}
 
 	/**
 	 * @return the classificacao
 	 */
 	@Column(name = "classificacao")
-	@NotBlank
-	@NotNull
-	public Double getClassificacao()
+	public Double getRating()
 	{
-		return classificacao;
+		return rating;
 	}
 
 	/**
-	 * @param classificacao
+	 * @param rating
 	 *            the classificacao to set
 	 */
-	public void setClassificacao(final Double classificacao)
+	public void setRating(final Double rating)
 	{
-		this.classificacao = classificacao;
+		this.rating = rating;
 	}
 
 	/**
 	 * @return
 	 */
-	@ManyToMany
+	@NotEmpty
+	@ManyToMany(fetch = FetchType.LAZY)
 	@JoinTable(name = "autor_has_livro", joinColumns = @JoinColumn(name = "livro_id"),
 			inverseJoinColumns = @JoinColumn(name = " autor_id "))
 	public Set<Author> getAuthors()

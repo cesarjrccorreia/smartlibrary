@@ -47,8 +47,16 @@
 						<td>${user.email}</td>
 						<td>${user.username}</td>
 					    <sec:authorize access="hasRole('Bibliotecaria')">
-							<td><a href="<c:url value='/edit-user-${user.username}' />" class="btn btn-success custom-width">edit</a></td>
-							<td><a href="<c:url value='/delete-user-${user.username}' />" class="btn btn-danger custom-width">delete</a></td>
+							<td>
+								<a href="<c:url value='/users/edit-user-${user.username}' />" class="btn btn-success custom-width">
+									<spring:message code="label.edit" />
+								</a>
+							</td>
+							<td>
+								<a href="<c:url value='/users/delete-user-${user.username}' />" class="btn btn-danger custom-width">
+									<spring:message code="label.delete" />
+								</a>
+							</td>
         				</sec:authorize>
 					</tr>
 				</c:forEach>

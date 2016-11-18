@@ -5,7 +5,10 @@ package com.cesar.tcc.smartlibrary.service;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.cesar.tcc.smartlibrary.entity.Book;
 import com.cesar.tcc.smartlibrary.idao.IBookDao;
@@ -15,6 +18,8 @@ import com.cesar.tcc.smartlibrary.iservice.IBookService;
  * @author cesar
  *
  */
+@Service(value = "bookService")
+@Transactional
 public class BookService implements IBookService
 {
 	@Autowired

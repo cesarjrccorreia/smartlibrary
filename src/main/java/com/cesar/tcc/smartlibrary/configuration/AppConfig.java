@@ -15,23 +15,34 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
+import com.cesar.tcc.smartlibrary.converter.AuthorConverter;
+import com.cesar.tcc.smartlibrary.converter.EditoraConverter;
 import com.cesar.tcc.smartlibrary.converter.RoleToUserProfileConverter;
 
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.cesar.tcc.smartlibrary")
-public class AppConfig extends WebMvcConfigurerAdapter {
+public class AppConfig extends WebMvcConfigurerAdapter
+{
 
 	@Autowired
 	RoleToUserProfileConverter roleToUserProfileConverter;
 
+	@Autowired
+	AuthorConverter authorConverter;
+
+	@Autowired
+	EditoraConverter editoraConverter;
+
 	@Override
-	public void addResourceHandlers(final ResourceHandlerRegistry registry) {
+	public void addResourceHandlers(final ResourceHandlerRegistry registry)
+	{
 		registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
 	}
 
 	@Override
-	public void configureViewResolvers(final ViewResolverRegistry registry) {
+	public void configureViewResolvers(final ViewResolverRegistry registry)
+	{
 
 		final InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
@@ -42,19 +53,24 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	}
 
 	@Bean
-	public MessageSource messageSource() {
+	public MessageSource messageSource()
+	{
 		final ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
 		messageSource.setBasename("messages");
 		return messageSource;
 	}
 
 	@Override
-	public void addFormatters(final FormatterRegistry registry) {
+	public void addFormatters(final FormatterRegistry registry)
+	{
 		registry.addConverter(roleToUserProfileConverter);
+		registry.addConverter(authorConverter);
+		registry.addConverter(editoraConverter);
 	}
 
 	@Override
-	public void configurePathMatch(final PathMatchConfigurer configurer) {
+	public void configurePathMatch(final PathMatchConfigurer configurer)
+	{
 		configurer.setUseRegisteredSuffixPatternMatch(true);
 	}
 

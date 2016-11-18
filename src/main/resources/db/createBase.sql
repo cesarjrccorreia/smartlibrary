@@ -67,7 +67,7 @@ CREATE TABLE livro (
   id SERIAL   NOT NULL ,
   editora_id INTEGER   NOT NULL ,
   isbn VARCHAR   NOT NULL ,
-  name VARCHAR   NOT NULL ,
+  nome VARCHAR   NOT NULL ,
   ano INTEGER   NOT NULL ,
   edicao INTEGER   NOT NULL ,
   sumario VARCHAR   NOT NULL ,

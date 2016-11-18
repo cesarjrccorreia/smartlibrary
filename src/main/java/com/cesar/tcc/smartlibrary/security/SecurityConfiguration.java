@@ -19,7 +19,8 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter
+{
 
 	@Autowired
 	@Qualifier("customUserDetailsService")
@@ -29,13 +30,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	PersistentTokenRepository tokenRepository;
 
 	@Autowired
-	public void configureGlobalSecurity(final AuthenticationManagerBuilder auth) throws Exception {
+	public void configureGlobalSecurity(final AuthenticationManagerBuilder auth) throws Exception
+	{
 		auth.userDetailsService(userDetailsService);
 		auth.authenticationProvider(authenticationProvider());
 	}
 
 	@Bean
-	public AuthenticationProvider authenticationProvider() {
+	public AuthenticationProvider authenticationProvider()
+	{
 		final DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
 		authenticationProvider.setUserDetailsService(userDetailsService);
 		authenticationProvider.setPasswordEncoder(passwordEncoder());
@@ -44,7 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Override
-	protected void configure(final HttpSecurity http) throws Exception {
+	protected void configure(final HttpSecurity http) throws Exception
+	{
 		http.authorizeRequests().antMatchers("/", "/list")
 				.access("hasRole('Aluno') or hasRole('Bibliotecaria') or hasRole('Professor')")
 				.antMatchers("/newuser/**", "/delete-user-*").access("hasRole('Bibliotecaria')")
@@ -56,12 +60,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public BCryptPasswordEncoder passwordEncoder() {
+	public BCryptPasswordEncoder passwordEncoder()
+	{
 		return new BCryptPasswordEncoder();
 	}
 
 	@Bean
-	public PersistentTokenBasedRememberMeServices getPersistentTokenBasedRememberMeServices() {
+	public PersistentTokenBasedRememberMeServices getPersistentTokenBasedRememberMeServices()
+	{
 		final PersistentTokenBasedRememberMeServices tokenBasedService = new PersistentTokenBasedRememberMeServices(
 				"remember-me", userDetailsService, tokenRepository);
 
@@ -69,7 +75,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	}
 
 	@Bean
-	public AuthenticationTrustResolver getAuthenticationTrustResolver() {
+	public AuthenticationTrustResolver getAuthenticationTrustResolver()
+	{
 		return new AuthenticationTrustResolverImpl();
 	}
 

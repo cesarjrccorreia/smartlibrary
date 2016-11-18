@@ -1,21 +1,23 @@
 /**
  * 
  */
-package com.cesar.tcc.smartlibrary.entity;
+package com.cesar.tcc.smartlibrary.dao;
 
 import java.util.List;
 
 import org.hibernate.Criteria;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.stereotype.Repository;
 
-import com.cesar.tcc.smartlibrary.dao.AbstractDao;
+import com.cesar.tcc.smartlibrary.entity.Book;
 import com.cesar.tcc.smartlibrary.idao.IBookDao;
 
 /**
  * @author cesar
  *
  */
+@Repository(value = "bookDao")
 public class BookDao extends AbstractDao<Integer, Book> implements IBookDao
 {
 
@@ -31,7 +33,7 @@ public class BookDao extends AbstractDao<Integer, Book> implements IBookDao
 	public Book findByName(final String name)
 	{
 		final Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("nome", name));
+		crit.add(Restrictions.eq("name", name));
 
 		final Book book = (Book) crit.uniqueResult();
 
@@ -48,7 +50,7 @@ public class BookDao extends AbstractDao<Integer, Book> implements IBookDao
 	public void deleteByName(final String name)
 	{
 		final Criteria crit = createEntityCriteria();
-		crit.add(Restrictions.eq("nome", name));
+		crit.add(Restrictions.eq("name", name));
 		final Book book = (Book) crit.uniqueResult();
 
 		delete(book);
