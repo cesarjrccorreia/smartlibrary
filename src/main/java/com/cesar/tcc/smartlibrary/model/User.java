@@ -2,7 +2,6 @@ package com.cesar.tcc.smartlibrary.model;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -15,6 +14,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -40,7 +40,8 @@ public class User implements Serializable
 
 	private Set<UserProfile> userProfiles = new HashSet<>();
 
-	private List<Disciplina> disciplinas;
+	@Transient
+	private Set<Disciplina> disciplinas;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -116,15 +117,15 @@ public class User implements Serializable
 		this.userProfiles = userProfiles;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany
 	@JoinTable(name = "disciplinas_matriculadas", joinColumns = @JoinColumn(name = "usuario_id"),
 			inverseJoinColumns = @JoinColumn(name = " disciplina_id "))
-	public List<Disciplina> getDisciplinas()
+	public Set<Disciplina> getDisciplinas()
 	{
 		return disciplinas;
 	}
 
-	public void setDisciplinas(final List<Disciplina> disciplinas)
+	public void setDisciplinas(final Set<Disciplina> disciplinas)
 	{
 		this.disciplinas = disciplinas;
 	}
