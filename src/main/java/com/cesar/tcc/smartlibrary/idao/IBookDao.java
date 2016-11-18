@@ -34,4 +34,9 @@ public interface IBookDao
 	 */
 	List<Book> findAll();
 
+	/**
+	 * @param book
+	 */
+	void update(Book book);
+
 }

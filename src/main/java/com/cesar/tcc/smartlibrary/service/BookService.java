@@ -5,7 +5,10 @@ package com.cesar.tcc.smartlibrary.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.cesar.tcc.smartlibrary.entity.Book;
+import com.cesar.tcc.smartlibrary.idao.IBookDao;
 import com.cesar.tcc.smartlibrary.iservice.IBookService;
 
 /**
@@ -14,54 +17,63 @@ import com.cesar.tcc.smartlibrary.iservice.IBookService;
  */
 public class BookService implements IBookService
 {
+	@Autowired
+	IBookDao bookDao;
 
 	@Override
 	public Book findById(final int id)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		final Book book = bookDao.findById(id);
+
+		return book;
 	}
 
 	@Override
 	public Book findByName(final String name)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		final Book book = bookDao.findByName(name);
+
+		return book;
 	}
 
 	@Override
 	public void save(final Book book)
 	{
-		// TODO Auto-generated method stub
-
+		bookDao.save(book);
 	}
 
 	@Override
 	public void deleteByName(final String name)
 	{
-		// TODO Auto-generated method stub
-
+		bookDao.deleteByName(name);
 	}
 
 	@Override
 	public List<Book> findAll()
 	{
-		// TODO Auto-generated method stub
-		return null;
+		final List<Book> books = bookDao.findAll();
+
+		return books;
 	}
 
 	@Override
 	public boolean isNameUnique(final Integer id, final String name)
 	{
-		// TODO Auto-generated method stub
-		return false;
+		final Book book = findByName(name);
+
+		return (book == null || ((id != null && (book.getId() == id))));
 	}
 
 	@Override
 	public void update(final Book book)
 	{
-		// TODO Auto-generated method stub
+		final Integer id = book.getId();
+		final Book entity = bookDao.findById(id);
 
+		if (entity != null)
+		{
+			bookDao.update(book);
+		}
 	}
 
 }

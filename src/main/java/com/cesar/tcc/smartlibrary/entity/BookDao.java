@@ -66,4 +66,10 @@ public class BookDao extends AbstractDao<Integer, Book> implements IBookDao
 		return books;
 	}
 
+	@Override
+	public void update(final Book book)
+	{
+		update(book);
+	}
+
 }
