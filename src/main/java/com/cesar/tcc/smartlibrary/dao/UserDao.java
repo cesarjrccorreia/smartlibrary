@@ -9,10 +9,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.cesar.tcc.smartlibrary.entity.User;
-import com.cesar.tcc.smartlibrary.idao.UserDao;
+import com.cesar.tcc.smartlibrary.idao.IUserDao;
 
 @Repository("userDao")
-public class UserDaoImpl extends AbstractDao<Integer, User> implements UserDao {
+public class UserDao extends AbstractDao<Integer, User> implements IUserDao {
 
 	@Override
 	public User findById(final int id) {

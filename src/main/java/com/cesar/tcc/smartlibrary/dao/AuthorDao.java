@@ -8,10 +8,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.cesar.tcc.smartlibrary.entity.Author;
-import com.cesar.tcc.smartlibrary.idao.AuthorDao;
+import com.cesar.tcc.smartlibrary.idao.IAuthorDao;
 
 @Repository("authorDao")
-public class AuthorDaoImpl extends AbstractDao<Integer, Author> implements AuthorDao {
+public class AuthorDao extends AbstractDao<Integer, Author> implements IAuthorDao {
 
 	@Override
 	public Author findById(final int id) {

@@ -19,14 +19,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.cesar.tcc.smartlibrary.entity.UserProfile;
-import com.cesar.tcc.smartlibrary.iservice.UserProfileService;
+import com.cesar.tcc.smartlibrary.iservice.IUserProfileService;
 
 @SessionAttributes("roles")
 public class AppController
 {
 
 	@Autowired
-	UserProfileService userProfileService;
+	IUserProfileService userProfileService;
 
 	@Autowired
 	MessageSource messageSource;

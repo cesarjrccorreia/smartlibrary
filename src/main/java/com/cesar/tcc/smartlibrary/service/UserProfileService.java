@@ -7,15 +7,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cesar.tcc.smartlibrary.entity.UserProfile;
-import com.cesar.tcc.smartlibrary.idao.UserProfileDao;
-import com.cesar.tcc.smartlibrary.iservice.UserProfileService;
+import com.cesar.tcc.smartlibrary.idao.IUserProfileDao;
+import com.cesar.tcc.smartlibrary.iservice.IUserProfileService;
 
 @Service("userProfileService")
 @Transactional
-public class UserProfileServiceImpl implements UserProfileService {
+public class UserProfileService implements IUserProfileService {
 
 	@Autowired
-	UserProfileDao dao;
+	IUserProfileDao dao;
 
 	@Override
 	public UserProfile findById(final int id) {

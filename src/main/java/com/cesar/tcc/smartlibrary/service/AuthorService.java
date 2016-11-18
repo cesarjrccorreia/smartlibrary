@@ -8,15 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cesar.tcc.smartlibrary.entity.Author;
-import com.cesar.tcc.smartlibrary.idao.AuthorDao;
-import com.cesar.tcc.smartlibrary.iservice.AuthorService;
+import com.cesar.tcc.smartlibrary.idao.IAuthorDao;
+import com.cesar.tcc.smartlibrary.iservice.IAuthorService;
 
 @Service("authorService")
 @Transactional
-public class AuthorServiceImpl implements AuthorService {
+public class AuthorService implements IAuthorService {
 
 	@Autowired
-	AuthorDao authorDao;
+	IAuthorDao authorDao;
 
 	@Override
 	public Author findById(final int id) {

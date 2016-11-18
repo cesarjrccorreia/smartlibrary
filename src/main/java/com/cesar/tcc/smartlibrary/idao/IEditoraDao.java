@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.cesar.tcc.smartlibrary.entity.Editora;
 
-public interface EditoraDao {
+public interface IEditoraDao {
 
 	Editora findById(int id);
 

@@ -8,10 +8,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.cesar.tcc.smartlibrary.entity.Editora;
-import com.cesar.tcc.smartlibrary.idao.EditoraDao;
+import com.cesar.tcc.smartlibrary.idao.IEditoraDao;
 
 @Repository(value = "editoraDao")
-public class EditoraDaoImpl extends AbstractDao<Integer, Editora> implements EditoraDao {
+public class EditoraDao extends AbstractDao<Integer, Editora> implements IEditoraDao {
 
 	@Override
 	public Editora findById(final int id) {

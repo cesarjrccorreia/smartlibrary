@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.cesar.tcc.smartlibrary.entity.User;
 
-public interface UserService {
+public interface IUserService {
 
 	User findById(int id);
 

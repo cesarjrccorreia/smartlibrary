@@ -14,13 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.cesar.tcc.smartlibrary.entity.User;
 import com.cesar.tcc.smartlibrary.entity.UserProfile;
-import com.cesar.tcc.smartlibrary.iservice.UserService;
+import com.cesar.tcc.smartlibrary.iservice.IUserService;
 
 @Service("customUserDetailsService")
 public class CustomUserDetailsService implements UserDetailsService {
 
 	@Autowired
-	private UserService userService;
+	private IUserService userService;
 
 	@Transactional(readOnly = true)
 	@Override

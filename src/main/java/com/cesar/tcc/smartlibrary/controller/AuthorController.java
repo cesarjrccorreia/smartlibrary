@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.entity.Author;
-import com.cesar.tcc.smartlibrary.iservice.AuthorService;
+import com.cesar.tcc.smartlibrary.iservice.IAuthorService;
 import com.cesar.tcc.smartlibrary.utilities.Constants;
 
 @Controller(value = "authorController")
@@ -25,7 +25,7 @@ public class AuthorController extends AppController
 {
 
 	@Autowired
-	AuthorService authorService;
+	IAuthorService authorService;
 
 	@RequestMapping
 	public String listAuthor(final ModelMap model)

@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.entity.User;
-import com.cesar.tcc.smartlibrary.iservice.UserService;
+import com.cesar.tcc.smartlibrary.iservice.IUserService;
 import com.cesar.tcc.smartlibrary.utilities.Constants;
 
 @Controller
@@ -25,7 +25,7 @@ public class UserController extends AppController
 {
 
 	@Autowired
-	UserService userService;
+	IUserService userService;
 
 	@RequestMapping()
 	public String listUsers(final ModelMap model)

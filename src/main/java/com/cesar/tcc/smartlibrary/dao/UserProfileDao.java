@@ -8,10 +8,10 @@ import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
 import com.cesar.tcc.smartlibrary.entity.UserProfile;
-import com.cesar.tcc.smartlibrary.idao.UserProfileDao;
+import com.cesar.tcc.smartlibrary.idao.IUserProfileDao;
 
 @Repository("userProfileDao")
-public class UserProfileDaoImpl extends AbstractDao<Integer, UserProfile> implements UserProfileDao {
+public class UserProfileDao extends AbstractDao<Integer, UserProfile> implements IUserProfileDao {
 
 	@SuppressWarnings("unchecked")
 	@Override

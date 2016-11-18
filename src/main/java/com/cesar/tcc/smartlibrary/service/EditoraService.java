@@ -8,15 +8,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cesar.tcc.smartlibrary.entity.Editora;
-import com.cesar.tcc.smartlibrary.idao.EditoraDao;
-import com.cesar.tcc.smartlibrary.iservice.EditoraService;
+import com.cesar.tcc.smartlibrary.idao.IEditoraDao;
+import com.cesar.tcc.smartlibrary.iservice.IEditoraService;
 
 @Service(value = "editoraService")
 @Transactional
-public class EditoraServiceImpl implements EditoraService {
+public class EditoraService implements IEditoraService {
 
 	@Autowired
-	private EditoraDao editoraDao;
+	private IEditoraDao editoraDao;
 
 	@Override
 	public Editora findById(final int id) {

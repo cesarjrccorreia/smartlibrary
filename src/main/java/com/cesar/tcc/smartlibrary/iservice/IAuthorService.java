@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.cesar.tcc.smartlibrary.entity.Author;
 
-public interface AuthorService {
+public interface IAuthorService {
 
 	Author findById(int id);
 

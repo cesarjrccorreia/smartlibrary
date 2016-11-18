@@ -8,15 +8,15 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.cesar.tcc.smartlibrary.entity.User;
-import com.cesar.tcc.smartlibrary.idao.UserDao;
-import com.cesar.tcc.smartlibrary.iservice.UserService;
+import com.cesar.tcc.smartlibrary.idao.IUserDao;
+import com.cesar.tcc.smartlibrary.iservice.IUserService;
 
 @Service("userService")
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserService implements IUserService {
 
 	@Autowired
-	private UserDao userDao;
+	private IUserDao userDao;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;

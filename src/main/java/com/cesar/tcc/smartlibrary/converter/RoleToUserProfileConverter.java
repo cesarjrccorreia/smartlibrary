@@ -5,13 +5,13 @@ import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
 import com.cesar.tcc.smartlibrary.entity.UserProfile;
-import com.cesar.tcc.smartlibrary.iservice.UserProfileService;
+import com.cesar.tcc.smartlibrary.iservice.IUserProfileService;
 
 @Component
 public class RoleToUserProfileConverter implements Converter<Object, UserProfile> {
 
 	@Autowired
-	UserProfileService userProfileService;
+	IUserProfileService userProfileService;
 
 	@Override
 	public UserProfile convert(final Object element) {
