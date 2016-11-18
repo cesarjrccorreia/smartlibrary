@@ -7,9 +7,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cesar.tcc.smartlibrary.entity.Editora;
 import com.cesar.tcc.smartlibrary.idao.EditoraDao;
 import com.cesar.tcc.smartlibrary.iservice.EditoraService;
-import com.cesar.tcc.smartlibrary.model.Editora;
 
 @Service(value = "editoraService")
 @Transactional

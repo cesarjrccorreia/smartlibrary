@@ -2,7 +2,7 @@ package com.cesar.tcc.smartlibrary.iservice;
 
 import java.util.List;
 
-import com.cesar.tcc.smartlibrary.model.User;
+import com.cesar.tcc.smartlibrary.entity.User;
 
 public interface UserService {
 

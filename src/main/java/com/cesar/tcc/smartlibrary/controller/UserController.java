@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cesar.tcc.smartlibrary.entity.User;
 import com.cesar.tcc.smartlibrary.iservice.UserService;
-import com.cesar.tcc.smartlibrary.model.User;
 import com.cesar.tcc.smartlibrary.utilities.Constants;
 
 @Controller

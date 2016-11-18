@@ -7,8 +7,8 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.cesar.tcc.smartlibrary.entity.UserProfile;
 import com.cesar.tcc.smartlibrary.idao.UserProfileDao;
-import com.cesar.tcc.smartlibrary.model.UserProfile;
 
 @Repository("userProfileDao")
 public class UserProfileDaoImpl extends AbstractDao<Integer, UserProfile> implements UserProfileDao {

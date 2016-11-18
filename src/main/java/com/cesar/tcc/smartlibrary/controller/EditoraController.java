@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cesar.tcc.smartlibrary.entity.Editora;
 import com.cesar.tcc.smartlibrary.iservice.EditoraService;
-import com.cesar.tcc.smartlibrary.model.Editora;
 import com.cesar.tcc.smartlibrary.utilities.Constants;
 
 @Controller(value = "editoraController")

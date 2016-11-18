@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import com.cesar.tcc.smartlibrary.entity.UserProfile;
 import com.cesar.tcc.smartlibrary.iservice.UserProfileService;
-import com.cesar.tcc.smartlibrary.model.UserProfile;
 
 @Component
 public class RoleToUserProfileConverter implements Converter<Object, UserProfile> {

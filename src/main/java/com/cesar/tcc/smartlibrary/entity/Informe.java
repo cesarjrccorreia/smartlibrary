@@ -1,4 +1,4 @@
-package com.cesar.tcc.smartlibrary.model;
+package com.cesar.tcc.smartlibrary.entity;
 
 import java.io.Serializable;
 
@@ -7,12 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = " disciplina ")
-public class Disciplina implements Serializable
+@Table(name = "informe")
+public class Informe implements Serializable
 {
 
 	/**
@@ -20,11 +22,11 @@ public class Disciplina implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Integer Id;
+	private Integer id;
 
-	private String name;
+	private User user;
 
-	private String ementa;
+	private String text;
 
 	/**
 	 * @return
@@ -33,7 +35,7 @@ public class Disciplina implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId()
 	{
-		return Id;
+		return id;
 	}
 
 	/**
@@ -41,46 +43,43 @@ public class Disciplina implements Serializable
 	 */
 	public void setId(final Integer id)
 	{
-		Id = id;
+		this.id = id;
 	}
 
 	/**
 	 * @return
 	 */
-	@Column(name = "nome")
-	@NotNull
-	public String getName()
+	@ManyToOne
+	@JoinColumn(name = " usuario_id ")
+	public User getUser()
 	{
-		return name;
+		return user;
 	}
 
 	/**
-	 * @param nome
+	 * @param user
 	 */
-	public void setName(final String name)
+	public void setUser(final User user)
 	{
-		this.name = name;
+		this.user = user;
 	}
 
 	/**
 	 * @return
 	 */
-	@Column(name = " ementa ")
+	@Column(name = " texto ")
 	@NotNull
-	public String getEmenta()
+	public String getText()
 	{
-		return ementa;
+		return text;
 	}
 
 	/**
-	 * @param ementa
+	 * @param text
 	 */
-	/**
-	 * @param ementa
-	 */
-	public void setEmenta(final String ementa)
+	public void setText(final String text)
 	{
-		this.ementa = ementa;
+		this.text = text;
 	}
 
 }

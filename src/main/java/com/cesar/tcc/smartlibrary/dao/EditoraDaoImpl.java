@@ -7,8 +7,8 @@ import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
+import com.cesar.tcc.smartlibrary.entity.Editora;
 import com.cesar.tcc.smartlibrary.idao.EditoraDao;
-import com.cesar.tcc.smartlibrary.model.Editora;
 
 @Repository(value = "editoraDao")
 public class EditoraDaoImpl extends AbstractDao<Integer, Editora> implements EditoraDao {

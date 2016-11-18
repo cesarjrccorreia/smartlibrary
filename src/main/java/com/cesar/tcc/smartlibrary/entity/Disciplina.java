@@ -1,4 +1,4 @@
-package com.cesar.tcc.smartlibrary.model;
+package com.cesar.tcc.smartlibrary.entity;
 
 import java.io.Serializable;
 
@@ -7,14 +7,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "informe")
-public class Informe implements Serializable
+@Table(name = " disciplina ")
+public class Disciplina implements Serializable
 {
 
 	/**
@@ -22,11 +20,11 @@ public class Informe implements Serializable
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
+	private Integer Id;
 
-	private User user;
+	private String name;
 
-	private String text;
+	private String ementa;
 
 	/**
 	 * @return
@@ -35,7 +33,7 @@ public class Informe implements Serializable
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public Integer getId()
 	{
-		return id;
+		return Id;
 	}
 
 	/**
@@ -43,43 +41,46 @@ public class Informe implements Serializable
 	 */
 	public void setId(final Integer id)
 	{
-		this.id = id;
+		Id = id;
 	}
 
 	/**
 	 * @return
 	 */
-	@ManyToOne
-	@JoinColumn(name = " usuario_id ")
-	public User getUser()
-	{
-		return user;
-	}
-
-	/**
-	 * @param user
-	 */
-	public void setUser(final User user)
-	{
-		this.user = user;
-	}
-
-	/**
-	 * @return
-	 */
-	@Column(name = " texto ")
+	@Column(name = "nome")
 	@NotNull
-	public String getText()
+	public String getName()
 	{
-		return text;
+		return name;
 	}
 
 	/**
-	 * @param text
+	 * @param nome
 	 */
-	public void setText(final String text)
+	public void setName(final String name)
 	{
-		this.text = text;
+		this.name = name;
+	}
+
+	/**
+	 * @return
+	 */
+	@Column(name = " ementa ")
+	@NotNull
+	public String getEmenta()
+	{
+		return ementa;
+	}
+
+	/**
+	 * @param ementa
+	 */
+	/**
+	 * @param ementa
+	 */
+	public void setEmenta(final String ementa)
+	{
+		this.ementa = ementa;
 	}
 
 }

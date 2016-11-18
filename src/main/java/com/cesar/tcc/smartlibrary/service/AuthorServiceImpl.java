@@ -7,9 +7,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.cesar.tcc.smartlibrary.entity.Author;
 import com.cesar.tcc.smartlibrary.idao.AuthorDao;
 import com.cesar.tcc.smartlibrary.iservice.AuthorService;
-import com.cesar.tcc.smartlibrary.model.Author;
 
 @Service("authorService")
 @Transactional

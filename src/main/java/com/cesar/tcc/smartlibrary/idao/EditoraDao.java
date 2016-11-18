@@ -2,7 +2,7 @@ package com.cesar.tcc.smartlibrary.idao;
 
 import java.util.List;
 
-import com.cesar.tcc.smartlibrary.model.Editora;
+import com.cesar.tcc.smartlibrary.entity.Editora;
 
 public interface EditoraDao {
 

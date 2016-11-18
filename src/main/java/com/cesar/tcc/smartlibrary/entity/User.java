@@ -1,4 +1,4 @@
-package com.cesar.tcc.smartlibrary.model;
+package com.cesar.tcc.smartlibrary.entity;
 
 import java.io.Serializable;
 import java.util.HashSet;

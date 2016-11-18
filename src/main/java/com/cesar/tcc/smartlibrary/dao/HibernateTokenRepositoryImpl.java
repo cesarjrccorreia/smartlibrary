@@ -9,7 +9,7 @@ import org.springframework.security.web.authentication.rememberme.PersistentToke
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.cesar.tcc.smartlibrary.model.PersistentLogin;
+import com.cesar.tcc.smartlibrary.entity.PersistentLogin;
 
 @Repository("tokenRepositoryDao")
 @Transactional
