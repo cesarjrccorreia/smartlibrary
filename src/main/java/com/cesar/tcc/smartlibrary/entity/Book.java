@@ -76,6 +76,7 @@ public class Book implements Serializable
 	 */
 	@ManyToOne
 	@JoinColumn(name = "editora_id", nullable = false)
+	@NotNull
 	public Editora getEditora()
 	{
 		return editora;
@@ -250,9 +251,9 @@ public class Book implements Serializable
 	 * @return
 	 */
 	@NotEmpty
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "autor_has_livro", joinColumns = @JoinColumn(name = "livro_id"),
-			inverseJoinColumns = @JoinColumn(name = " autor_id "))
+			inverseJoinColumns = @JoinColumn(name = "autor_id "))
 	public Set<Author> getAuthors()
 	{
 		return authors;

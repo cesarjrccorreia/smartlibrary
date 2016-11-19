@@ -101,7 +101,7 @@ public class BookController extends AppController
 	}
 
 	@RequestMapping(value = { "/edit-{name}" }, method = RequestMethod.GET)
-	public String editAuthor(@PathVariable final String name, final ModelMap model)
+	public String edit(@PathVariable final String name, final ModelMap model)
 	{
 		final Book book = bookService.findByName(name);
 		model.addAttribute("book", book);

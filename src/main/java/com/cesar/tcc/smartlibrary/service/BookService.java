@@ -77,7 +77,16 @@ public class BookService implements IBookService
 
 		if (entity != null)
 		{
-			bookDao.update(book);
+			entity.setAuthors(book.getAuthors());
+			entity.setEdition(book.getEdition());
+			entity.setEditora(book.getEditora());
+			entity.setImage(book.getImage());
+			entity.setIsbn(book.getIsbn());
+			entity.setName(book.getName());
+			entity.setQuantity(book.getQuantity());
+			entity.setSummary(book.getSummary());
+			entity.setYear(book.getYear());
+
 		}
 	}
 

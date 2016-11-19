@@ -85,7 +85,7 @@
 				<div class="form-group col-md-12">
 					<label class="col-md-3 control-lable" for="image"><spring:message code="label.book.image" /></label>
 					<div class="col-md-7">
-						<form:input type="file" path="image" id="image" class="form-control input-sm" />
+						<form:input type="file" path="image" id="image" class="form-control" />
 						<div class="has-error">
 							<form:errors path="image" class="help-inline"/>
 						</div>
@@ -119,9 +119,12 @@
 			
 			<div class="row">
 				<div class="form-group col-md-12">
-					<label class="col-md-3 control-lable" for="editora"><spring:message code="label.book.editoras" /></label>
+					<label class="col-md-3 control-lable" for="editora" ><spring:message code="label.book.editoras" /></label>
 					<div class="col-md-7">
-						<form:select path="editora" items="${editoras}" multiple="false" itemValue="id" itemLabel="name" class="form-control input-sm" />
+						<form:select path="editora" class="form-control" >
+							<form:option value="0" label="--- Selecione uma editora ---" disabled="true"  selected="selected" />
+							<form:options items="${editoras}" itemValue="id" itemLabel="name" />
+						</form:select>
 						<div class="has-error">
 							<form:errors path="editora" class="help-inline"/>
 						</div>
