@@ -20,14 +20,14 @@
 				  </div>
 				</form>
 			</div>
-				<div class="informe col-md-8" style="border: 1px black solid; height: 650px;">
+				<div class="informe col-md-8">
 					informe
 				</div>
-				<div class="col-md-4" style="border: 1px black solid; height: 500px; ">
+				<div class="area-alertas col-md-4">
 					Alertas
 				</div>
 		</div>
-		<div class="recommender row" style="border: 1px black solid; height: 133.5px;">
+		<div class="recommender row">
 			<span style="margin-left: 50%">Recomendações</span>
 		</div>
    	

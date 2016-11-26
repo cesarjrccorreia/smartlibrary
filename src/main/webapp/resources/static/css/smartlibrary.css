@@ -1,5 +1,8 @@
 @CHARSET "UTF-8";
 
+html {
+	height: 100%;
+}
 /* container adjusted */
 .alt-grid .container {
 	width:100%;
@@ -7,6 +10,13 @@
 	padding:0;
 }
 
+.allt-grid {
+	height: 100%;
+}
+
+.container {
+	height:100%;
+}
 /* Inicio página login */
 #mainWrapper {
 	height: 100%;
@@ -67,7 +77,20 @@ background-image: linear-gradient(to top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, 
 	padding-top: 0px;
 }
 
-.breakLine
+.recommender
 {
-	height: 10px;
+	height: 17%;
+	border: 1px black solid;
+}
+
+.area-alertas
+{
+	height: 60%;
+	border: 1px black solid; 
+}
+
+.informe
+{
+	border: 1px black solid;
+	height: 64%
 }
