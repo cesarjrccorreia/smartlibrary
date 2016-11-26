@@ -13,46 +13,47 @@
 	</head>
 
 	<body>
-		<div id="mainWrapper">
-			<div class="login-container">
-				<div class="login-card">
-					<div class="login-form">
-						<c:url var="loginUrl" value="/login" />
-						<form action="${loginUrl}" method="post" class="form-horizontal">
-							<c:if test="${param.error != null}">
-								<div class="alert alert-danger">
-									<p><spring:message code="msg.invalid.user" /></p>
+		<div id="containerLogin">
+			<div id="mainWrapper">
+				<div class="login-container">
+					<div class="login-card">
+						<div class="login-form">
+							<c:url var="loginUrl" value="/login" />
+							<form action="${loginUrl}" method="post" class="form-horizontal">
+								<c:if test="${param.error != null}">
+									<div class="alert alert-danger">
+										<p><spring:message code="msg.invalid.user" /></p>
+									</div>
+								</c:if>
+								<c:if test="${param.logout != null}">
+									<div class="alert alert-success">
+										<p><spring:message code="msg.success.logout"/></p>
+									</div>
+								</c:if>
+								<div class="input-group input-sm">
+									<label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
+									<input type="text" class="form-control" id="username" name="username" placeholder="<spring:message code="msg.input.user" />" required>
 								</div>
-							</c:if>
-							<c:if test="${param.logout != null}">
-								<div class="alert alert-success">
-									<p><spring:message code="msg.success.logout"/></p>
+								<div class="input-group input-sm">
+									<label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label> 
+									<input type="password" class="form-control" id="password" name="password" placeholder="<spring:message code="msg.input.password" />" required>
 								</div>
-							</c:if>
-							<div class="input-group input-sm">
-								<label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
-								<input type="text" class="form-control" id="username" name="username" placeholder="<spring:message code="msg.input.user" />" required>
-							</div>
-							<div class="input-group input-sm">
-								<label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label> 
-								<input type="password" class="form-control" id="password" name="password" placeholder="<spring:message code="msg.input.password" />" required>
-							</div>
-							<div class="input-group input-sm">
-                              <div class="checkbox">
-                                <label><input type="checkbox" id="rememberme" name="remember-me"> <spring:message code="label.remember" /></label>  
-                              </div>
-                            </div>
-							<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
-								
-							<div class="form-actions">
-								<input type="submit"
-									class="btn btn-block btn-primary btn-default" value="<spring:message code="label.button.login" />">
-							</div>
-						</form>
+								<div class="input-group input-sm">
+	                              <div class="checkbox">
+	                                <label><input type="checkbox" id="rememberme" name="remember-me"> <spring:message code="label.remember" /></label>  
+	                              </div>
+	                            </div>
+								<input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
+									
+								<div class="form-actions">
+									<input type="submit"
+										class="btn btn-block btn-primary btn-default" value="<spring:message code="label.button.login" />">
+								</div>
+							</form>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
 	</body>
 </html>

@@ -7,23 +7,28 @@
 
 <jsp:include page="header.jsp" />
 
-	<div class="container">
-		<header>
-		</header>
-		<div id="center">
-		
+		<div id="center" class="panel-body">
+			<div class="barsearch col-md-7">
+				<form>
+				  <div class="input-group input-group-lg">
+				    <input type="text" class="form-control" placeholder="<spring:message code="label.search" />">
+				    <div class="input-group-btn">
+				      <button class="btn btn-default btn-lg" type="submit">
+				        <i class="glyphicon glyphicon-search"></i>
+				      </button>
+				    </div>
+				  </div>
+				</form>
+			</div>
+				<div class="informe col-md-8" style="border: 1px black solid; height: 650px;">
+					informe
+				</div>
+				<div class="col-md-4" style="border: 1px black solid; height: 500px; ">
+					Alertas
+				</div>
 		</div>
-		<div id="recommender">
-		
+		<div class="recommender row" style="border: 1px black solid; height: 133.5px;">
+			<span style="margin-left: 50%">Recomendações</span>
 		</div>
-		<div id="">
-		</div>
-		<h1>Olá</h1>
-		<label>Selecine a área de cadastro que deseja ir:</label><br/>
-		<a href="<c:url value='<%= Constants.USER_PAGE %>' />"><spring:message code="label.user"/></a><br/>
-		<a href="<c:url value='<%= Constants.AUTHOR_PAGE %>' />"><spring:message code="label.author"/></a><br/>
-		<a href="<c:url value='<%= Constants.EDITORA_PAGE %>' />"><spring:message code="label.editora"/></a><br/>
-		<a href="<c:url value='<%= Constants.BOOK_PAGE %>' />"><spring:message code="label.book"/></a><br/>
-   	</div>
    	
 <jsp:include page="footer.jsp" />

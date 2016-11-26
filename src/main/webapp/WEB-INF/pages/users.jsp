@@ -9,16 +9,6 @@
 
 	<div class="generic-container">
 	
-		<div class="authbar">
-			<span>
-				<strong>${loggedinuser}</strong>, Seja Bem-Vindo.
-			</span>
-			<span class="floatRight">
-				<a href="<c:url value='/' />"><spring:message code="label.main"/></a><br/>
-				<a href="<c:url value="/logout" />"><spring:message code="label.button.logout"/></a>
-			</span>
-		</div>
-		
 		<c:if test="${not empty success }">
 			<div class="alert alert-success lead">
 		    	${success}
@@ -65,7 +55,7 @@
 		</div>
 		<sec:authorize access="hasRole('Bibliotecaria')">
 		 	<div class="well">
-		 		<a href="<c:url value='/newuser' />"><spring:message code="msg.add.element" arguments="usuário"/></a>
+		 		<a href="<c:url value='/users/newuser' />"><spring:message code="msg.add.element" arguments="usuário"/></a>
 		 	</div>
 	 	</sec:authorize>
    	</div>

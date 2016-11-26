@@ -1,14 +1,13 @@
 @CHARSET "UTF-8";
-html{
-	background-color:#2F2F2F;
+
+/* container adjusted */
+.alt-grid .container {
+	width:100%;
+	max-width:none;
+	padding:0;
 }
 
-body{
-	height: 100%;
-	background-color:rgb(245, 245, 245);
-}
-
-
+/* Inicio página login */
 #mainWrapper {
 	height: 100%;
 	background-image: -webkit-gradient(
@@ -36,29 +35,7 @@ background-image: linear-gradient(to top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, 
 	color:red;
 }
 
-.generic-container {
-  position:fixed;
-  width:80%;
-  margin-left: 20px;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  padding: 20px;
-  background-color: #EAE7E7;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-shadow: 0 0 30px black;
-}
-
-.custom-width {
-    width: 80px !important;
-}
-
-body, #mainWrapper, .form-control{
-	font-size:12px!important;
-}
-
 #mainWrapper {
-	/*height: 720px; Without explicit px values, % in children's does not work*/
 	height: 100vh; /*with Viewport-Percentage, we can handles all devices screens  */
 	padding-left:10px;
 	padding-right:10px;
@@ -82,6 +59,15 @@ body, #mainWrapper, .form-control{
     padding: 10%;
 }
 
-.authbar{
-	margin-bottom:15px;
+/* FIM página login */
+
+.header
+{
+	border-radius: 0px;
+	padding-top: 0px;
+}
+
+.breakLine
+{
+	height: 10px;
 }

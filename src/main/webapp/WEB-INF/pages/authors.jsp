@@ -15,16 +15,6 @@
 			</div>
 		</c:if>
 		
-		<div class="authbar">
-			<span>
-				<strong>${loggedinuser}</strong>, Seja Bem-Vindo.
-			</span>
-			<span class="floatRight">
-				<a href="<c:url value='/' />"><spring:message code="label.main"/></a><br/>
-				<a href="<c:url value="/logout" />"><spring:message code="label.button.logout"/></a>
-			</span>
-		</div>
-		
 		<div class="panel panel-default">
 			  <!-- Default panel contents -->
 		  	<div class="panel-heading"><span class="lead"><spring:message code="label.list.author"/> </span></div>
