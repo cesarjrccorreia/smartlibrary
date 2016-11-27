@@ -1,4 +1,5 @@
-<%@page import="com.cesar.tcc.smartlibrary.utilities.Constants"%>
+<%@ page import="com.cesar.tcc.smartlibrary.utilities.Constants"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
@@ -38,7 +39,8 @@
 								<li><a id="user" href="<c:url value='<%= Constants.USER_PAGE %>' />"><spring:message code="label.user"/></a></li>
 								<li><a id="author" href="<c:url value='<%= Constants.AUTHOR_PAGE %>' />"><spring:message code="label.author"/></a></li>
 								<li><a id="editora" href="<c:url value='<%= Constants.EDITORA_PAGE %>' />"><spring:message code="label.editora"/></a></li>		
-								<li><a id="book" href="<c:url value='<%= Constants.BOOK_PAGE %>' />"><spring:message code="label.book"/></a></li>							<li></li>
+								<li><a id="book" href="<c:url value='<%= Constants.BOOK_PAGE %>' />"><spring:message code="label.book"/></a></li>
+								<li><a id="disciplina" href="<c:url value='<%= Constants.DISCIPLINA_PAGE %>' />"><spring:message code="label.disciplina"/></a></li>
 							</ul>
 						</li>
 						
@@ -46,7 +48,7 @@
 					</sec:authorize>
 					
 					<sec:authorize access="hasRole('Aluno')">
-						<li><a id="add_disciplina" href="<c:url value='<%= Constants.DISCIPLINA_ADD %>' />"><spring:message code="label.disciplina.add"/></a></li>
+						<li><a id="add_disciplina" href="<c:url value='<%= Constants.ADD_DISCIPLINA %>' />"><spring:message code="label.disciplina.add"/></a></li>
 					</sec:authorize>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">

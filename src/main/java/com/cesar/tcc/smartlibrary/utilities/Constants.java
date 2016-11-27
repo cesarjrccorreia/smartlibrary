@@ -15,7 +15,11 @@ public class Constants
 
 	public static String USER_PAGE = "users";
 
+	public static String DISCIPLINA_PAGE = "disciplina";
+
 	public static String FORM_USER = "formUser";
+
+	public static String FORM_DISCIPLINA = "formDisciplina";
 
 	public static String FORM_AUTHOR = "formAuthor";
 
@@ -29,6 +33,8 @@ public class Constants
 
 	public static String FORM_INFORME = "formInforme";
 
-	public static String DISCIPLINA_ADD = "formDisciplina";
+	public static String ADD_DISCIPLINA_PAGE = "addDisciplina";
+
+	public static String ADD_DISCIPLINA = "/disciplina/add";
 
 }

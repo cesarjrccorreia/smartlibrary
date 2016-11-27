@@ -39,7 +39,7 @@
 						<div class="db-wrapper">
 							<div class="db-book">
 								<ul>
-									<li class="book-tite">
+									<li class="book-title">
 										<i class="glyphicon glyphicon-qrcode"></i> ${livro.name}
 									</li>
 								</ul>
