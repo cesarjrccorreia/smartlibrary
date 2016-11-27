@@ -20,8 +20,13 @@
 				  </div>
 				</form>
 			</div>
-				<div class="informe col-md-8">
-					informe
+				<div class="informe col-md-8 list-group">
+					<c:forEach var="informe" items="${informes}">
+						<div class="list-group-item list-group-item-action">
+							<h3 class="list-group-item-heading">${informe.titulo}</h3>
+							<p class="list-group-item-text" >${informe.text}</p>
+						</div>
+					</c:forEach>
 				</div>
 				<div class="area-alertas col-md-4">
 					Alertas

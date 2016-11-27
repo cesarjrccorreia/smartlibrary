@@ -7,41 +7,38 @@
 
 <jsp:include page="header.jsp" />
 
-<div class="generic-container">
+<div class="well lead"><spring:message code="title.form.editora" /></div>
 
-		<div class="well lead"><spring:message code="title.form.editora" /></div>
-		
-	 	<form:form method="POST" modelAttribute="editora" class="form-horizontal">
-			<form:input type="hidden" path="id" id="id"/>
-			
-			<div class="form-group">
-				<label class="col-md-3 control-label" for="name"><spring:message code="label.name" /></label>
-				<div class="col-md-7">
-					<form:input type="text" path="name" id="name" class="form-control input-sm"/>
-					<div class="has-error">
-						<form:errors path="name" class="help-inline"/>
-					</div>
-				</div>
-			</div>
+	<form:form method="POST" modelAttribute="editora" class="form-horizontal">
+	<form:input type="hidden" path="id" id="id"/>
 	
-			<div class="form-actions floatRight">
-				<c:choose>
-					<c:when test="${edit}">
-						<input type="submit" value="<spring:message code="label.button.update" />" class="btn btn-primary"/>
-						<a href="<c:url value='/editoras' />">
-							<spring:message code="label.cancel" />
-						</a>
-					</c:when>
-					<c:otherwise>
-						<input type="submit" value="<spring:message code="label.button.save" />" class="btn btn-primary"/>
-						<a href="<c:url value='/editoras' />">
-							<spring:message code="label.cancel" />
-						</a>
-					</c:otherwise>
-				</c:choose>
+	<div class="form-group">
+		<label class="col-md-3 control-label" for="name"><spring:message code="label.name" /></label>
+		<div class="col-md-7">
+			<form:input type="text" path="name" id="name" class="form-control input-sm"/>
+			<div class="has-error">
+				<form:errors path="name" class="help-inline"/>
 			</div>
-			
-		</form:form>
+		</div>
 	</div>
+
+	<div class="form-actions floatRight">
+		<c:choose>
+			<c:when test="${edit}">
+				<input type="submit" value="<spring:message code="label.button.update" />" class="btn btn-primary"/>
+				<a href="<c:url value='/editoras' />">
+					<spring:message code="label.cancel" />
+				</a>
+			</c:when>
+			<c:otherwise>
+				<input type="submit" value="<spring:message code="label.button.save" />" class="btn btn-primary"/>
+				<a href="<c:url value='/editoras' />">
+					<spring:message code="label.cancel" />
+				</a>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	
+</form:form>
 
 <jsp:include page="footer.jsp" />

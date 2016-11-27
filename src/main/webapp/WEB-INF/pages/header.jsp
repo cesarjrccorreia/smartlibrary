@@ -31,6 +31,9 @@
 					<li><a id="author" href="<c:url value='<%= Constants.AUTHOR_PAGE %>' />"><spring:message code="label.author"/></a></li>
 					<li><a id="editora" href="<c:url value='<%= Constants.EDITORA_PAGE %>' />"><spring:message code="label.editora"/></a><br/></li>		
 					<li><a id="book" href="<c:url value='<%= Constants.BOOK_PAGE %>' />"><spring:message code="label.book"/></a><br/></li>
+					<sec:authorize access="hasRole('Bibliotecaria')">
+						<li><a id="add_informe" href="<c:url value='<%= Constants.INFORME_ADD %>' />"><spring:message code="label.informe.add"/></a><br/></li>
+					</sec:authorize>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
 					<li>
@@ -45,3 +48,7 @@
 				</ul>
 			</div>
 		</nav>
+		
+		<c:if test="${not empty success }">
+			<div class="alert alert-success lead">${success}</div>
+		</c:if>

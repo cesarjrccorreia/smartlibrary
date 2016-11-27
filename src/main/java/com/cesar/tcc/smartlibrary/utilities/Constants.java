@@ -25,4 +25,8 @@ public class Constants
 
 	public static String FORM_BOOK = "formBook";
 
+	public static String INFORME_ADD = "informe/new";
+
+	public static String FORM_INFORME = "formInforme";
+
 }

@@ -28,6 +28,8 @@ public class Informe implements Serializable
 
 	private String text;
 
+	private String titulo;
+
 	/**
 	 * @return
 	 */
@@ -80,6 +82,25 @@ public class Informe implements Serializable
 	public void setText(final String text)
 	{
 		this.text = text;
+	}
+
+	/**
+	 * @return the titulo
+	 */
+	@NotNull
+	@Column(name = "titulo")
+	public String getTitulo()
+	{
+		return titulo;
+	}
+
+	/**
+	 * @param titulo
+	 *            the titulo to set
+	 */
+	public void setTitulo(final String titulo)
+	{
+		this.titulo = titulo;
 	}
 
 }

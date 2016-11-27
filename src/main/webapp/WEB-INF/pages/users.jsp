@@ -9,11 +9,6 @@
 
 	<div class="generic-container">
 	
-		<c:if test="${not empty success }">
-			<div class="alert alert-success lead">
-		    	${success}
-			</div>
-		</c:if>
 		<div class="panel panel-default">
 			  <!-- Default panel contents -->
 		  	<div class="panel-heading"><span class="lead"><spring:message code="label.list.user"/></span></div>

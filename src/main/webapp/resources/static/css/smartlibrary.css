@@ -86,11 +86,16 @@ background-image: linear-gradient(to top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, 
 .area-alertas
 {
 	height: 60%;
-	border: 1px black solid; 
+	border-radius: 6px;
+	box-shadow: 0px 2px 17px 9px silver;
 }
 
 .informe
 {
-	border: 1px black solid;
 	height: 64%
+}
+
+.list-group-item-heading
+{
+	font-weight: bold;
 }
