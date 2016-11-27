@@ -11,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.entity.Book;
@@ -48,6 +49,16 @@ public class MainController extends AppController
 		return Constants.MAIN_PAGE;
 	}
 
+	@RequestMapping(method = RequestMethod.POST)
+	public String searchBook(final ModelMap modelMap, @RequestParam final String search)
+	{
+		final Book book = bookService.findByName(search);
+
+		modelMap.addAttribute("book", book);
+
+		return Constants.SEARCH_PAGE;
+	}
+
 	@RequestMapping(value = "/informe/new")
 	public String addInforme(final ModelMap modelMap)
 	{
@@ -72,7 +83,7 @@ public class MainController extends AppController
 
 		final String[] parameters = new String[] { "informe" };
 		final Locale locale = Locale.getDefault();
-		redirect.addFlashAttribute("success", messageSource.getMessage("msg.user.saved", parameters, locale));
+		redirect.addFlashAttribute("success", messageSource.getMessage("msg.saved", parameters, locale));
 
 		final String redirectMsg = String.format("redirect:%s", "/");
 

@@ -17,6 +17,8 @@ public class Constants
 
 	public static String DISCIPLINA_PAGE = "disciplina";
 
+	public static String SEARCH_PAGE = "search";
+
 	public static String FORM_USER = "formUser";
 
 	public static String FORM_DISCIPLINA = "formDisciplina";

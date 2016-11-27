@@ -43,7 +43,7 @@ public class InformeDao extends AbstractDao<Integer, Informe> implements IInform
 	@Override
 	public List<Informe> findAll()
 	{
-		final Criteria criteria = createEntityCriteria().addOrder(Order.asc("id"));
+		final Criteria criteria = createEntityCriteria().addOrder(Order.desc("id"));
 		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
 
 		@SuppressWarnings("unchecked")
