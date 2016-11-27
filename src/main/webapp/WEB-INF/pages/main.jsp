@@ -32,8 +32,26 @@
 					Alertas
 				</div>
 		</div>
-		<div class="recommender row">
-			<span style="margin-left: 50%">Recomendações</span>
-		</div>
+		<sec:authorize access="hasRole('Aluno')">
+			<div id="recommender" class="row ">
+				<c:forEach var="livro" items="${livros}">
+					<div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
+						<div class="db-wrapper">
+							<div class="db-book">
+								<ul>
+									<li class="book-tite">
+										<i class="glyphicon glyphicon-qrcode"></i> ${livro.name}
+									</li>
+								</ul>
+								
+								<div class="book-footer">
+									<a href="#" class="btn btn-info btn-lg"><spring:message code="label.button.reservar" /></a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</c:forEach>
+			</div>
+		</sec:authorize>
    	
 <jsp:include page="footer.jsp" />

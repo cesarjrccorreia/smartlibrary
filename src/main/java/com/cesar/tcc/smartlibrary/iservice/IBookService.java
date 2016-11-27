@@ -45,4 +45,6 @@ public interface IBookService
 	 */
 	void update(final Book book);
 
+	List<Book> recommender();
+
 }

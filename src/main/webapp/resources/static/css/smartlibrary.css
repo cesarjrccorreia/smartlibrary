@@ -77,25 +77,84 @@ background-image: linear-gradient(to top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, 
 	padding-top: 0px;
 }
 
-.recommender
+#recommender
 {
-	height: 17%;
-	border: 1px black solid;
 }
 
 .area-alertas
 {
-	height: 60%;
+	height: 54%;
 	border-radius: 6px;
 	box-shadow: 0px 2px 17px 9px silver;
 }
 
 .informe
 {
-	height: 64%
+	height: 54%
 }
 
 .list-group-item-heading
 {
 	font-weight: bold;
+}
+
+/* RECOMMENDER */
+
+.db-book {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-align: center;
+    border: 1px solid #C5C2C2;
+    background-color: #EDEDED;
+}
+
+.db-book:hover {
+    margin-top: 5px;
+    -moz-transition: margin-top 0.25s ease 0s;
+    -ms-transition: margin-top 0.25s ease 0s;
+    transition: margin-top 0.25s ease 0s;
+}
+
+.db-book ul {
+    list-style: none;
+    margin: 0;
+    text-align: center;
+    padding-left: 0px;
+}
+
+.db-book ul li {
+    border-bottom: solid 1px #D8D8D8;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.db-book ul li.book-tite {
+    background-color: #fff;
+    padding: 40px 20px 20px 20px;
+    font-size: 20px;
+    font-weight: 900;
+    color: #353c3e;
+    font-weight: 900;
+}
+
+.db-book ul li.price i {
+    padding: 30px;
+    font-size: 50px;
+    display: block;
+}
+
+.db-book .book-footer {
+    padding: 20px;
+}
+
+.db-book .book-footer a i {
+    margin: 5px;
+    top: 3px;
+}
+
+.row {
+	padding-left: 1%;
+	padding-right: 1%;
 }

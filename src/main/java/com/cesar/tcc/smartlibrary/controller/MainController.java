@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.cesar.tcc.smartlibrary.entity.Book;
 import com.cesar.tcc.smartlibrary.entity.Informe;
 import com.cesar.tcc.smartlibrary.entity.User;
+import com.cesar.tcc.smartlibrary.iservice.IBookService;
 import com.cesar.tcc.smartlibrary.iservice.IInformeService;
 import com.cesar.tcc.smartlibrary.iservice.IUserService;
 import com.cesar.tcc.smartlibrary.utilities.Constants;
@@ -24,17 +26,24 @@ import com.cesar.tcc.smartlibrary.utilities.Constants;
 public class MainController extends AppController
 {
 	@Autowired
-	IInformeService informeService;
+	private IInformeService informeService;
 
 	@Autowired
-	IUserService userService;
+	private IBookService bookService;
+
+	@Autowired
+	private IUserService userService;
 
 	@RequestMapping
 	public String startMainPage(final ModelMap modelMap)
 	{
 		modelMap.addAttribute("loggedinuser", getPrincipal());
+
 		final List<Informe> informes = informeService.findAll();
 		modelMap.addAttribute("informes", informes);
+
+		final List<Book> livros = bookService.recommender();
+		modelMap.addAttribute("livros", livros);
 
 		return Constants.MAIN_PAGE;
 	}
@@ -65,7 +74,7 @@ public class MainController extends AppController
 		final Locale locale = Locale.getDefault();
 		redirect.addFlashAttribute("success", messageSource.getMessage("msg.user.saved", parameters, locale));
 
-		final String redirectMsg = String.format("redirect:/%s", "/");
+		final String redirectMsg = String.format("redirect:%s", "/");
 
 		return redirectMsg;
 	}

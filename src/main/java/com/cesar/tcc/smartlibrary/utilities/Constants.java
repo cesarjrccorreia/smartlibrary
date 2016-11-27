@@ -29,4 +29,6 @@ public class Constants
 
 	public static String FORM_INFORME = "formInforme";
 
+	public static String DISCIPLINA_ADD = "formDisciplina";
+
 }
