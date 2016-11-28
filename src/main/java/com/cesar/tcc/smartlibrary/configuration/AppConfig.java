@@ -16,6 +16,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 import org.springframework.web.servlet.view.JstlView;
 
 import com.cesar.tcc.smartlibrary.converter.AuthorConverter;
+import com.cesar.tcc.smartlibrary.converter.DisciplinaConverter;
 import com.cesar.tcc.smartlibrary.converter.EditoraConverter;
 import com.cesar.tcc.smartlibrary.converter.RoleToUserProfileConverter;
 
@@ -33,6 +34,9 @@ public class AppConfig extends WebMvcConfigurerAdapter
 
 	@Autowired
 	EditoraConverter editoraConverter;
+
+	@Autowired
+	DisciplinaConverter disciplinaConverter;
 
 	@Override
 	public void addResourceHandlers(final ResourceHandlerRegistry registry)
@@ -66,6 +70,7 @@ public class AppConfig extends WebMvcConfigurerAdapter
 		registry.addConverter(roleToUserProfileConverter);
 		registry.addConverter(authorConverter);
 		registry.addConverter(editoraConverter);
+		registry.addConverter(disciplinaConverter);
 	}
 
 	@Override

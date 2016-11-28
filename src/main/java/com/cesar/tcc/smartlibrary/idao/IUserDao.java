@@ -25,6 +25,11 @@ public interface IUserDao
 	void save(User user);
 
 	/**
+	 * @param user
+	 */
+	void update(User user);
+
+	/**
 	 * @param username
 	 */
 	void deleteByUsername(String username);

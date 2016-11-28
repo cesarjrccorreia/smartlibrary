@@ -4,7 +4,8 @@ import java.util.List;
 
 import com.cesar.tcc.smartlibrary.entity.User;
 
-public interface IUserService {
+public interface IUserService
+{
 
 	User findById(int id);
 
@@ -13,6 +14,8 @@ public interface IUserService {
 	void saveUser(User user);
 
 	void updateUser(User user);
+
+	void update(User user);
 
 	void deleteUserByUsername(String username);
 

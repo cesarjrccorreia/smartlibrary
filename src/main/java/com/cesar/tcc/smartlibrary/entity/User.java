@@ -1,3 +1,4 @@
+
 package com.cesar.tcc.smartlibrary.entity;
 
 import java.io.Serializable;
@@ -117,9 +118,9 @@ public class User implements Serializable
 		this.userProfiles = userProfiles;
 	}
 
-	@ManyToMany
-	@JoinTable(name = "disciplinas_matriculadas", joinColumns = @JoinColumn(name = "usuario_id"),
-			inverseJoinColumns = @JoinColumn(name = " disciplina_id "))
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "disciplinas_matriculadas", joinColumns = @JoinColumn(name = "user_id"),
+			inverseJoinColumns = @JoinColumn(name = "disciplina_id "))
 	public Set<Disciplina> getDisciplinas()
 	{
 		return disciplinas;
@@ -188,5 +189,9 @@ public class User implements Serializable
 	{
 		return "User [id=" + id + ", Username=" + username + ", Name=" + name + ", email=" + email + "]";
 	}
+
+	/**
+	 * @return the periodo
+	 */
 
 }

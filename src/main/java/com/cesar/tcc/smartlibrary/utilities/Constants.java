@@ -7,6 +7,8 @@ public class Constants
 
 	public static int CURRENT_YEAR = Year.now().getValue();
 
+	public static String PATH_MAIN = "/";
+
 	public static String MAIN_PAGE = "main";
 
 	public static String EDITORA_PAGE = "editoras";

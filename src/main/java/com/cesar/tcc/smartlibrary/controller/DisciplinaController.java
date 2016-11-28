@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.entity.Disciplina;
+import com.cesar.tcc.smartlibrary.entity.User;
 import com.cesar.tcc.smartlibrary.iservice.IDisciplinaService;
+import com.cesar.tcc.smartlibrary.iservice.IUserService;
 import com.cesar.tcc.smartlibrary.utilities.Constants;
 
 @Controller
@@ -25,6 +27,9 @@ public class DisciplinaController extends AppController
 {
 	@Autowired
 	private IDisciplinaService disciplinaService;
+
+	@Autowired
+	private IUserService userService;
 
 	@RequestMapping
 	public String listUsers(final ModelMap model)
@@ -125,13 +130,41 @@ public class DisciplinaController extends AppController
 		return redirectMsg;
 	}
 
-	@RequestMapping(value = { "/add" }, method = RequestMethod.GET)
+	@RequestMapping(value = "/add", method = RequestMethod.GET)
 	public String addDisciplina(final ModelMap model)
 	{
+		final String username = (String) getPrincipal();
+		final User user = userService.findByUsername(username);
+		model.addAttribute("user", user);
+
+		model.addAttribute("loggedinuser", getPrincipal());
+
 		final List<Disciplina> disciplinas = disciplinaService.findAll();
 		model.addAttribute("disciplinas", disciplinas);
 
 		return Constants.ADD_DISCIPLINA_PAGE;
+	}
+
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public String saveAddDisciplina(final User user, final BindingResult result, final RedirectAttributes redirect)
+	{
+		final User currentUser = userService.findById(user.getId());
+		currentUser.setDisciplinas(user.getDisciplinas());
+
+		if (result.hasErrors())
+		{
+			return Constants.ADD_DISCIPLINA_PAGE;
+		}
+
+		userService.update(currentUser);
+
+		final String[] parameters = new String[] { "informe" };
+		final Locale locale = Locale.getDefault();
+		redirect.addFlashAttribute("success", messageSource.getMessage("msg.updated", parameters, locale));
+
+		final String redirectMsg = String.format("redirect:%s", "/");
+
+		return redirectMsg;
 	}
 
 }

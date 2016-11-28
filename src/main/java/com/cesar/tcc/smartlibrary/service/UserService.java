@@ -13,7 +13,8 @@ import com.cesar.tcc.smartlibrary.iservice.IUserService;
 
 @Service("userService")
 @Transactional
-public class UserService implements IUserService {
+public class UserService implements IUserService
+{
 
 	@Autowired
 	private IUserDao userDao;
@@ -22,19 +23,22 @@ public class UserService implements IUserService {
 	private PasswordEncoder passwordEncoder;
 
 	@Override
-	public User findById(final int id) {
+	public User findById(final int id)
+	{
 		return userDao.findById(id);
 	}
 
 	@Override
-	public User findByUsername(final String username) {
+	public User findByUsername(final String username)
+	{
 		final User user = userDao.findByUsername(username);
 
 		return user;
 	}
 
 	@Override
-	public void saveUser(final User user) {
+	public void saveUser(final User user)
+	{
 		user.setPassword(passwordEncoder.encode(user.getPassword()));
 
 		userDao.save(user);
@@ -42,13 +46,16 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void updateUser(final User user) {
+	public void updateUser(final User user)
+	{
 		final User entity = userDao.findById(user.getId());
 
-		if (entity != null) {
+		if (entity != null)
+		{
 			entity.setUsername(user.getUsername());
 
-			if (!user.getPassword().equals(entity.getPassword())) {
+			if (!user.getPassword().equals(entity.getPassword()))
+			{
 				entity.setPassword(passwordEncoder.encode(user.getPassword()));
 			}
 
@@ -61,17 +68,26 @@ public class UserService implements IUserService {
 	}
 
 	@Override
-	public void deleteUserByUsername(final String username) {
+	public void update(final User user)
+	{
+		userDao.update(user);
+	}
+
+	@Override
+	public void deleteUserByUsername(final String username)
+	{
 		userDao.deleteByUsername(username);
 	}
 
 	@Override
-	public List<User> findAllUsers() {
+	public List<User> findAllUsers()
+	{
 		return userDao.findAllUsers();
 	}
 
 	@Override
-	public boolean isUsernameUnique(final Integer id, final String username) {
+	public boolean isUsernameUnique(final Integer id, final String username)
+	{
 		final User user = findByUsername(username);
 		return (user == null || ((id != null && (user.getId() == id))));
 	}
