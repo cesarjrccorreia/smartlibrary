@@ -49,7 +49,7 @@
 					
 					<sec:authorize access="hasRole('Aluno') or hasRole('Professor')">
 						<li><a id="add_disciplina" href="<c:url value='<%= Constants.ADD_DISCIPLINA %>' />"><spring:message code="label.disciplina.add"/></a></li>
-						<li><a id="renovar_emprestimo" href="<c:url value='<%= Constants.RENOVAR %>' />"><spring:message code="label.emprestimo.renovar"/></a></li>
+						<li><a id="renovar_emprestimo" href="<c:url value='<%= Constants.RENOVAR %>' />-${loggedinuser}"><spring:message code="label.emprestimo.renovar"/></a></li>
 					</sec:authorize>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -67,5 +67,20 @@
 		</nav>
 		
 		<c:if test="${not empty success }">
-			<div id="alert" class="alert alert-success lead">${success}</div>
+			<div id="alert" class="alert alert-success alert-dismissible">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				${success}
+			</div>
+		</c:if>
+		<c:if test="${not empty info }">
+			<div id="alert" class="alert alert-info alert-dismissible">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				${info}
+			</div>
+		</c:if>
+		<c:if test="${not empty error }">
+			<div id="alert" class="alert alert-danger alert-dismissible">
+				<a href="#" class="close" data-dismiss="alert">&times;</a>
+				${error}
+			</div>
 		</c:if>

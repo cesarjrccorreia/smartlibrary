@@ -38,11 +38,13 @@ public class EmprestimoDao extends AbstractDao<Integer, Emprestimo> implements I
 	public List<Emprestimo> findAllByUser(final String name)
 	{
 		final StringBuilder builder = new StringBuilder();
-		builder.append("FROM Emprestimo e");
-		builder.append("INNER JOIN User u");
-		builder.append("ON e.user.id = u.id AND u.name = :name ");
+		builder.append("SELECT e ");
+		builder.append("FROM Emprestimo e ");
+		builder.append("INNER JOIN e.user u ");
+		builder.append("WHERE u.username like :name");
 
 		final Query query = getSession().createQuery(builder.toString());
+		query.setParameter("name", name);
 
 		@SuppressWarnings("unchecked")
 		final List<Emprestimo> emprestimos = query.list();

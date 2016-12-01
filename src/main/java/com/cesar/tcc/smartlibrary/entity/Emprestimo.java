@@ -49,7 +49,7 @@ public class Emprestimo
 	 * @return the user
 	 */
 	@ManyToOne
-	@JoinColumn(name = "usuario_id")
+	@JoinColumn(name = "user_id")
 	public User getUser()
 	{
 		return user;
