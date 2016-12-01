@@ -26,9 +26,8 @@ public class ReservaDao extends AbstractDao<Integer, Reserva> implements IReserv
 	{
 		final StringBuilder builder = new StringBuilder();
 		builder.append("FROM Reserva r ");
-		builder.append("INNER JOIN User u ");
-		builder.append("ON u.id = r.id ");
-		builder.append("AND u.name = :name ");
+		builder.append("INNER JOIN r.user u ");
+		builder.append("WHERE u.username like :name ");
 		final Query query = getSession().createQuery(builder.toString());
 		query.setParameter("name", name);
 

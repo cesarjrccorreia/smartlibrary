@@ -27,9 +27,8 @@ public class InformeDao extends AbstractDao<Integer, Informe> implements IInform
 	{
 		final StringBuilder builder = new StringBuilder();
 		builder.append("FROM Informe i");
-		builder.append("INNER JOIN User u");
-		builder.append("ON i.user = u.id");
-		builder.append("AND u.name = :name");
+		builder.append("INNER JOIN i.user u");
+		builder.append("WHERE u.username like :name");
 
 		final Query query = getSession().createQuery(builder.toString());
 		query.setParameter("name", name);
