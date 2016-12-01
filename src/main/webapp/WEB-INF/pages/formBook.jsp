@@ -94,7 +94,7 @@
 			<div class="form-group">
 				<label class="col-md-3 control-label" for="authors"><spring:message code="label.book.authors" /></label>
 				<div class="col-md-7">
-					<form:select path="authors" items="${authors}" multiple="true" itemValue="id" itemLabel="name" class="form-control input-sm" />
+					<form:select path="authors" items="${allAuthors}" multiple="true" itemValue="id" itemLabel="name" class="form-control input-sm" />
 					<div class="has-error">
 						<form:errors path="authors" class="help-inline"/>
 					</div>
@@ -105,8 +105,10 @@
 				<label class="col-md-3 control-label" for="editora" ><spring:message code="label.book.editoras" /></label>
 				<div class="col-md-7">
 					<form:select path="editora" class="form-control" >
-						<form:option value="0" label="--- Selecione uma editora ---" disabled="true"  selected="selected" />
-						<form:options items="${editoras}" itemValue="id" itemLabel="name" />
+						<c:if test="${book.editora == null }">
+							<form:option value="0" label="--- Selecione uma editora ---" disabled="true" selected="selected" />
+						</c:if>
+						<form:options items="${allEditoras}" itemValue="id" itemLabel="name"  />
 					</form:select>
 					<div class="has-error">
 						<form:errors path="editora" class="help-inline"/>

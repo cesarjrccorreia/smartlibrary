@@ -157,3 +157,8 @@ background-image: linear-gradient(to top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, 
 	padding-left: 1%;
 	padding-right: 1%;
 }
+
+.title 
+{
+	font-weight: bold;
+}

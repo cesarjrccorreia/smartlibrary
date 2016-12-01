@@ -48,13 +48,13 @@ public class BookController extends AppController
 		return Constants.BOOK_PAGE;
 	}
 
-	@ModelAttribute("authors")
+	@ModelAttribute("allAuthors")
 	public List<Author> initializeAuthor()
 	{
 		return authorService.findAll();
 	}
 
-	@ModelAttribute("editoras")
+	@ModelAttribute("allEditoras")
 	public List<Editora> initializeEditora()
 	{
 		return editoraService.findAll();

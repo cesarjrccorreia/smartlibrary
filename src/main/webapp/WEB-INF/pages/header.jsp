@@ -47,8 +47,9 @@
 						<li><a id="add_informe" href="<c:url value='<%= Constants.INFORME_ADD %>' />"><spring:message code="label.informe.add"/></a></li>
 					</sec:authorize>
 					
-					<sec:authorize access="hasRole('Aluno')">
+					<sec:authorize access="hasRole('Aluno') or hasRole('Professor')">
 						<li><a id="add_disciplina" href="<c:url value='<%= Constants.ADD_DISCIPLINA %>' />"><spring:message code="label.disciplina.add"/></a></li>
+						<li><a id="renovar_emprestimo" href="<c:url value='<%= Constants.RENOVAR %>' />"><spring:message code="label.emprestimo.renovar"/></a></li>
 					</sec:authorize>
 				</ul>
 				<ul class="nav navbar-nav navbar-right">
@@ -66,5 +67,5 @@
 		</nav>
 		
 		<c:if test="${not empty success }">
-			<div class="alert alert-success lead">${success}</div>
+			<div id="alert" class="alert alert-success lead">${success}</div>
 		</c:if>

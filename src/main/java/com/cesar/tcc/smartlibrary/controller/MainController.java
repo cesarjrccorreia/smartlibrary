@@ -1,5 +1,6 @@
 package com.cesar.tcc.smartlibrary.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.entity.Book;
+import com.cesar.tcc.smartlibrary.entity.Emprestimo;
 import com.cesar.tcc.smartlibrary.entity.Informe;
 import com.cesar.tcc.smartlibrary.entity.User;
 import com.cesar.tcc.smartlibrary.iservice.IBookService;
@@ -38,7 +40,14 @@ public class MainController extends AppController
 	@RequestMapping
 	public String startMainPage(final ModelMap modelMap)
 	{
-		modelMap.addAttribute("loggedinuser", getPrincipal());
+		final Object principal = getPrincipal();
+		modelMap.addAttribute("loggedinuser", principal);
+
+		final User user = userService.findByUsername((String) principal);
+		modelMap.addAttribute("disciplinas", user.getDisciplinas());
+
+		final List<Emprestimo> emprestimos = new ArrayList<>();
+		modelMap.addAttribute("emprestimos", emprestimos);
 
 		final List<Informe> informes = informeService.findAll();
 		modelMap.addAttribute("informes", informes);

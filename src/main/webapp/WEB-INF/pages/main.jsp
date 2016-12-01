@@ -32,13 +32,62 @@
 			</div>
 			
 			<div class="area-alertas col-md-4">
-				<div>
-					<h4><spring:message code="title.disciplina.matriculada" /></h4>
+				<div class="panel">
+					<h4 class="title"><spring:message code="title.disciplina.matriculada" /></h4>
+					<c:set var="isEmpty" value="true" />
 					
+					<c:forEach var="disciplina" items="${disciplinas }" >
+						<div class="list-group-item list-group-item-action">
+							<p class="list-group-item-text" >${disciplina.name }</p>
+						</div>
+						<c:set var="isEmpty" value="false" />
+					</c:forEach>
+					
+					<c:if test="${isEmpty }">
+						<div class="list-group-item list-group-item-action">
+							<p class="list-group-item-text" ><spring:message code="msg.disciplinas.empty" /></p>
+						</div>
+					</c:if>
 				</div>
-				<div>
-					<h4><spring:message code="title.emprestimo" /></h4>
+				
+				<div class="panel">
+					<h4 class="title"><spring:message code="title.emprestimo.efetuado" /></h4>
+					
+					<c:set var="isEmpty" value="true" />
+					<c:forEach var="emprestimo" items="${emprestimos}"  >
+					
+						<div class="list-group-item list-group-item-action">
+							<p class="list-group-item-text" >${emprestimo.id }</p>
+						</div>
+						<c:set var="isEmpty" value="false" />
+					</c:forEach>
+					
+					<c:if test="${isEmpty }">
+						<div class="list-group-item list-group-item-action">
+							<p class="list-group-item-text" ><spring:message code="msg.emprestimo.empty" /></p>
+						</div>
+					</c:if>
 				</div>
+				
+				<div class="panel">
+					<h4 class="title"><spring:message code="title.reserva.efetuada" /></h4>
+					
+					<c:set var="isEmpty" value="true" />
+					<c:forEach var="emprestimo" items="${emprestimos}"  >
+					
+						<div class="list-group-item list-group-item-action">
+							<p class="list-group-item-text" >${emprestimo.id }</p>
+						</div>
+						<c:set var="isEmpty" value="false" />
+					</c:forEach>
+					
+					<c:if test="${isEmpty }">
+						<div class="list-group-item list-group-item-action">
+							<p class="list-group-item-text" ><spring:message code="msg.reserva.empty" /></p>
+						</div>
+					</c:if>
+				</div>
+				
 			</div>
 		</div>
 		
