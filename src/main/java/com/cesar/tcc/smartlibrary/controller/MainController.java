@@ -72,9 +72,10 @@ public class MainController extends AppController
 	@RequestMapping(method = RequestMethod.POST)
 	public String searchBook(final ModelMap modelMap, @RequestParam final String search)
 	{
-		final Book book = bookService.findByName(search);
+		final List<Book> book = bookService.findAll();
 
-		modelMap.addAttribute("book", book);
+		modelMap.addAttribute("books", book);
+		modelMap.addAttribute("search", search);
 
 		return Constants.SEARCH_PAGE;
 	}
