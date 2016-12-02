@@ -51,7 +51,7 @@ public class Constants
 
 	public static String ADD_DISCIPLINA = "/disciplina/add";
 
-	public static String RENOVAR = "/emprestimo/renovar";
+	public static String RENOVAR = "/emprestimo/gorenovar";
 
 	public static String FORM_RENOVAR = "formRenovar";
 

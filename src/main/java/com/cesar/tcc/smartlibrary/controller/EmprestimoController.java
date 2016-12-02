@@ -120,8 +120,9 @@ public class EmprestimoController extends AppController
 		return redirectMsg;
 	}
 
-	@RequestMapping(value = "/renovar-{username}", method = RequestMethod.GET)
-	public String renovar(@PathVariable final String username, final ModelMap model, final RedirectAttributes redirect)
+	@RequestMapping(value = "/gorenovar-{username}", method = RequestMethod.GET)
+	public String goRenovar(@PathVariable final String username, final ModelMap model,
+			final RedirectAttributes redirect)
 	{
 		final List<Emprestimo> emprestimos = emprestimoService.findAllByUser(username);
 		final String[] parameters = new String[] {};
@@ -130,13 +131,39 @@ public class EmprestimoController extends AppController
 
 		if (emprestimos.isEmpty() || emprestimos == null)
 		{
-			redirect.addFlashAttribute("info", messageSource.getMessage("msg.emprestimo.empty", parameters, locale));
+			redirect.addFlashAttribute("info",
+					messageSource.getMessage("msg.emprestimo.empty.renovar", parameters, locale));
 			return redirectMsg;
 		}
 
+		model.addAttribute("emprestimos", emprestimos);
+		model.addAttribute("renovar", true);
+
+		return Constants.FORM_CLOSE_EMPRESTIMO;
+	}
+
+	@RequestMapping(value = "/renovar-{id}", method = RequestMethod.GET)
+	public String renovar(@PathVariable final Integer id, final RedirectAttributes redirect)
+	{
+		final Emprestimo emprestimo = emprestimoService.findById(id);
+		final String[] parameters = new String[] {};
+		final Locale locale = Locale.getDefault();
+		final String redirectMsg = String.format("redirect:/%s-%s", Constants.RENOVAR, getPrincipal());
+
+		if (emprestimo.isLate())
+		{
+			redirect.addFlashAttribute("error", messageSource.getMessage("msg.emprestimo.late", parameters, locale));
+			return redirectMsg;
+		}
+
+		final Date newInicio = new Date();
+		emprestimo.setInicio(newInicio);
+
+		emprestimoService.update(emprestimo);
+
 		redirect.addFlashAttribute("success", messageSource.getMessage("msg.updated", parameters, locale));
 
-		return Constants.FORM_RENOVAR;
+		return redirectMsg;
 	}
 
 }

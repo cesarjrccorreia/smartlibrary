@@ -16,6 +16,11 @@ public class UserConverter implements Converter<Object, User>
 	@Override
 	public User convert(final Object element)
 	{
+		if (element instanceof User)
+		{
+			return (User) element;
+		}
+
 		final Integer id = Integer.parseInt((String) element);
 		final User user = userService.findById(id);
 

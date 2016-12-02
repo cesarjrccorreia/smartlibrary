@@ -41,9 +41,18 @@
 							<td>${emprestimo.inicioDateString}</td>
 							<td>${emprestimo.limitDateString}</td>
 							<td>
-								<a href="<c:url value='/emprestimo/finalizar-${emprestimo.id}' />" class="btn btn-danger custom-width">
-									<spring:message code="label.close" />
-								</a>
+								<c:choose>
+									<c:when test="${ renovar == true }">
+										<a href="<c:url value='/emprestimo/renovar-${emprestimo.id}' />" class="btn btn-primary custom-width">
+											<spring:message code="label.renew" />
+										</a>
+									</c:when>
+									<c:otherwise>
+										<a href="<c:url value='/emprestimo/finalizar-${emprestimo.id}' />" class="btn btn-danger custom-width">
+											<spring:message code="label.close" />
+										</a>
+									</c:otherwise>
+								</c:choose>
 							</td>
 						</tr>
 				</c:forEach>
