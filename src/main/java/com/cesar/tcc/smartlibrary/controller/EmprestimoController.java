@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.entity.Book;
@@ -63,11 +64,37 @@ public class EmprestimoController extends AppController
 	}
 
 	@RequestMapping(value = "/close")
-	public String closeEmprestimo(final ModelMap model)
+	public String showFormCloseEmprestimo(final ModelMap model)
 	{
 
 		return Constants.FORM_CLOSE_EMPRESTIMO;
+	}
 
+	@RequestMapping(value = "/close", method = RequestMethod.POST)
+	public String closeEmprestimo(final ModelMap model, @RequestParam("search") final String username)
+	{
+		final List<Emprestimo> emprestimos = emprestimoService.findAllByUser(username);
+		model.addAttribute("emprestimos", emprestimos);
+
+		return Constants.FORM_CLOSE_EMPRESTIMO;
+	}
+
+	@RequestMapping(value = "/finalizar-{id}")
+	public String finalizar(@PathVariable final Integer id, final RedirectAttributes redirect)
+	{
+		final Emprestimo emprestimo = emprestimoService.findById(id);
+		final Date fimEmprestimo = new Date();
+		emprestimo.setFim(fimEmprestimo);
+
+		emprestimoService.update(emprestimo);
+
+		final String[] parameters = new String[] {};
+		final Locale locale = Locale.getDefault();
+		final String redirectMsg = String.format("redirect:/%s", Constants.CLOSE_EMPRESTIMO);
+
+		redirect.addFlashAttribute("success", messageSource.getMessage("msg.updated", parameters, locale));
+
+		return redirectMsg;
 	}
 
 	@RequestMapping(value = "/new", method = RequestMethod.POST)

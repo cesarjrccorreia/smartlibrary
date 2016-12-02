@@ -41,7 +41,8 @@ public class EmprestimoDao extends AbstractDao<Integer, Emprestimo> implements I
 		builder.append("SELECT e ");
 		builder.append("FROM Emprestimo e ");
 		builder.append("INNER JOIN e.user u ");
-		builder.append("WHERE u.username like :name");
+		builder.append("WHERE u.username like :name ");
+		builder.append("AND e.fim is null");
 
 		final Query query = getSession().createQuery(builder.toString());
 		query.setParameter("name", name);

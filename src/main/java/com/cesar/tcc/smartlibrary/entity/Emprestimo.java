@@ -169,7 +169,7 @@ public class Emprestimo
 	{
 		final Calendar calendar = Calendar.getInstance();
 		calendar.setTime(inicio);
-		calendar.add(Calendar.DATE, 7);
+		calendar.add(Calendar.DAY_OF_MONTH, 7);
 		final Date limitDate = calendar.getTime();
 
 		return limitDate;
@@ -179,7 +179,15 @@ public class Emprestimo
 	public String getLimitDateString()
 	{
 		final Date limitDate = getLimitDate();
-		final String format = new SimpleDateFormat("MM/dd/yyyy").format(limitDate);
+		final String format = new SimpleDateFormat("dd/MM/yyyy").format(limitDate);
+
+		return format;
+	}
+
+	@Transient
+	public String getInicioDateString()
+	{
+		final String format = new SimpleDateFormat("dd/MM/yyyy").format(inicio);
 
 		return format;
 	}
