@@ -64,7 +64,7 @@ public class MainController extends AppController
 		modelMap.addAttribute("informes", informes);
 
 		final List<Book> livros = bookService.recommender();
-		modelMap.addAttribute("livros", livros);
+		modelMap.addAttribute("books", livros);
 
 		return Constants.MAIN_PAGE;
 	}

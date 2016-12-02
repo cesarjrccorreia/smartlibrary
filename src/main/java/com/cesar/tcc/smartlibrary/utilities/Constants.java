@@ -63,4 +63,6 @@ public class Constants
 
 	public static String FORM_CLOSE_EMPRESTIMO = "formCloseEmprestimo";
 
+	public static String DETAIL_BOOK = "detailBook";
+
 }

@@ -8,7 +8,8 @@
 
 <jsp:include page="header.jsp" />
 
-		<div id="center" class="panel-body">
+<div class="panel-body">
+		<div id="center">
 			<div class="barsearch col-md-7">
 				<form:form  method="POST" >
 				  <div class="input-group input-group-lg">
@@ -94,21 +95,22 @@
 				
 			</div>
 		</div>
+</div>
 		
 		<sec:authorize access="hasRole('Aluno')">
-			<div id="recommender" class="row ">
-				<c:forEach var="livro" items="${livros}">
+			<div id="recommender" >
+				<c:forEach var="book" items="${books}">
 					<div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
 						<div class="db-wrapper">
 							<div class="db-book">
 								<ul>
 									<li class="book-title">
-										<i class="glyphicon glyphicon-qrcode"></i> ${livro.name}
+										<i class="glyphicon glyphicon-qrcode"></i> ${book.name}
 									</li>
 								</ul>
 								
 								<div class="book-footer">
-									<a href="#" class="btn btn-info btn-lg"><spring:message code="label.button.reservar" /></a>
+									<a href="<c:url value='/books/reservar-${book.id}' />" class="btn btn-info btn-lg"><spring:message code="label.button.reservar" /></a>
 								</div>
 							</div>
 						</div>

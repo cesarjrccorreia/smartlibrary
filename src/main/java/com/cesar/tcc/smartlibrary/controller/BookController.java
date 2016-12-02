@@ -143,4 +143,25 @@ public class BookController extends AppController
 		return redirectMsg;
 	}
 
+	@RequestMapping(value = "/reservar-{id}")
+	public String reservar(@PathVariable final Integer id, final RedirectAttributes redirect)
+	{
+		final String[] parameters = new String[] {};
+		final Locale locale = Locale.getDefault();
+		redirect.addFlashAttribute("success", messageSource.getMessage("msg.reserved", parameters, locale));
+
+		final String redirectMsg = String.format("redirect:/%s", "");
+
+		return redirectMsg;
+	}
+
+	@RequestMapping(value = "/detail-{id}")
+	public String showDetail(@PathVariable final Integer id, final ModelMap model)
+	{
+		final Book book = bookService.findById(id);
+		model.addAttribute("book", book);
+
+		return Constants.DETAIL_BOOK;
+	}
+
 }

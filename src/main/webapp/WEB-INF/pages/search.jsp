@@ -47,12 +47,12 @@
 						<td>${book.edition}</td>
 						<td>${book.rating}</td>
 						<td>
-							<a href="<c:url value='/book/reservar-${book.id}' />" class="btn btn-primary custom-width">
+							<a href="<c:url value='/books/reservar-${book.id}' />" class="btn btn-primary custom-width">
 								<spring:message code="label.button.reservar" />
 							</a>
 						</td>
 						<td>
-							<a href="<c:url value='/book/details-${book.id}' />" class="btn btn-default custom-width">
+							<a href="<c:url value='/books/detail-${book.id}' />" class="btn btn-default custom-width">
 								<spring:message code="label.button.details" />
 							</a>
 						</td>
