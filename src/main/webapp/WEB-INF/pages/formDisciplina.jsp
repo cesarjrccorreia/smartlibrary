@@ -7,7 +7,7 @@
 
 <jsp:include page="header.jsp" />
 
- 	<div class="generic-container">
+ 	<div class="panel-body">
 
 		<div class="well lead"><spring:message code="title.form.disciplina" /></div>
 	 	<form:form method="POST" modelAttribute="disciplina" class="form-horizontal">

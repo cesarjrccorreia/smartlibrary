@@ -7,6 +7,7 @@
 
 <jsp:include page="header.jsp" />
 
+<div class="panel-body">
 	<div class="well lead"><spring:message code="title.form.emprestimo" /></div>
  		<form:form method="POST" modelAttribute="emprestimo" class="form-horizontal">
 			<form:input type="hidden" path="id" id="id"/>
@@ -64,6 +65,6 @@
 			</div>
 				
 		</form:form>
-	
+</div>
 	
 <jsp:include page="footer.jsp" />

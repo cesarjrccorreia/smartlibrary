@@ -163,6 +163,11 @@ background-image: linear-gradient(to top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, 
 	font-weight: bold;
 }
 
+select[multiple].input-sm
+{
+	height: 200px;
+}
+
 label
 {
 	font-weight: normal;

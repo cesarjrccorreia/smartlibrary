@@ -36,11 +36,11 @@
 								<span class="caret"></span>
 							</a>
 							<ul class="dropdown-menu">
-								<li><a id="user" href="<c:url value='<%= Constants.USER_PAGE %>' />"><spring:message code="label.user"/></a></li>
-								<li><a id="author" href="<c:url value='<%= Constants.AUTHOR_PAGE %>' />"><spring:message code="label.author"/></a></li>
-								<li><a id="editora" href="<c:url value='<%= Constants.EDITORA_PAGE %>' />"><spring:message code="label.editora"/></a></li>		
-								<li><a id="book" href="<c:url value='<%= Constants.BOOK_PAGE %>' />"><spring:message code="label.book"/></a></li>
-								<li><a id="disciplina" href="<c:url value='<%= Constants.DISCIPLINA_PAGE %>' />"><spring:message code="label.disciplina"/></a></li>
+								<li><a id="user" href="<c:url value='<%= Constants.GO_USER_PAGE %>' />"><spring:message code="label.user"/></a></li>
+								<li><a id="author" href="<c:url value='<%= Constants.GO_AUTHOR_PAGE %>' />"><spring:message code="label.author"/></a></li>
+								<li><a id="editora" href="<c:url value='<%= Constants.GO_EDITORA_PAGE %>' />"><spring:message code="label.editora"/></a></li>		
+								<li><a id="book" href="<c:url value='<%= Constants.GO_BOOK_PAGE %>' />"><spring:message code="label.book"/></a></li>
+								<li><a id="disciplina" href="<c:url value='<%= Constants.GO_DISCIPLINA_PAGE %>' />"><spring:message code="label.disciplina"/></a></li>
 							</ul>
 						</li>
 

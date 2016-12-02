@@ -7,6 +7,7 @@
 
 <jsp:include page="header.jsp" />
 
+<div class="panel-body">
 	<div class="well lead"><spring:message code="title.form.user" /></div>
  	<form:form method="POST" modelAttribute="user" class="form-horizontal">
 		<form:input type="hidden" path="id" id="id"/>
@@ -83,5 +84,6 @@
 			</div>
 		</div>
 	</form:form>
+</div>
 	
 <jsp:include page="footer.jsp" />

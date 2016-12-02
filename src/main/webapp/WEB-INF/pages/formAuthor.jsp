@@ -7,7 +7,7 @@
 
 <jsp:include page="header.jsp" />
 
-<div class="generic-container">
+<div class="panel-body">
 
 		<div class="well lead"><spring:message code="title.form.author" /></div>
 		

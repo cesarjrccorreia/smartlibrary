@@ -7,12 +7,13 @@
 
 <jsp:include page="header.jsp" />
 
+<div class="panel-body">
 	<div class="well lead"><spring:message code="title.add.disciplina" /></div>
  	<form:form method="POST" modelAttribute="user" class="form-horizontal">
  		<form:input type="hidden" path="id" id="id"/>
  		
 		<div class="form-group">
-			<label class="col-md-3 control-label" for="name"><spring:message code="label.name" /></label>
+			<label class="col-md-3 control-label" for="name"><spring:message code="label.name" />:</label>
 			<div class="col-md-7">
 				<form:input type="text" path="name" id="name" class="form-control input-sm" />
 				<div class="has-error">
@@ -22,9 +23,9 @@
 		</div>
 		
 		<div class="form-group">
-			<label class="col-md-3 control-label" for="disciplinas"><spring:message code="label.disciplina" /></label>
+			<label class="col-md-3 control-label" for="disciplinas"><spring:message code="label.disciplina" />:</label>
 			<div class="col-md-7">
-				<form:select path="disciplinas" items="${disciplinas}" multiple="true" itemValue="id" itemLabel="name" class="form-control input-sm" />
+				<form:select path="disciplinas" items="${disciplinas}" multiple="true" itemValue="id" itemLabel="name" class="form-control input-sm select" />
 				<div class="has-error">
 					<form:errors path="disciplinas" class="help-inline"/>
 				</div>
@@ -46,5 +47,6 @@
 		</div>
 		
 	</form:form>
+</div>
 	
 <jsp:include page="footer.jsp" />
