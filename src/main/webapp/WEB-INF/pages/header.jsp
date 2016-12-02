@@ -43,6 +43,17 @@
 								<li><a id="disciplina" href="<c:url value='<%= Constants.DISCIPLINA_PAGE %>' />"><spring:message code="label.disciplina"/></a></li>
 							</ul>
 						</li>
+
+						<li class="dropdown">
+							<a id="emprestimo" class="dropdown-toggle" data-toggle="dropdown" href="<c:url value='#' />">
+								<spring:message code="title.emprestimo"/>
+								<span class="caret"></span>
+							</a>
+							<ul class="dropdown-menu">
+								<li><a id="newEmprestimo" href="<c:url value='<%= Constants.NEW_EMPRESTIMO %>' />"><spring:message code="label.new"/></a></li>
+								<li><a id="closeEmprestimo" href="<c:url value='<%= Constants.CLOSE_EMPRESTIMO %>' />"><spring:message code="label.close"/></a></li>
+							</ul>
+						</li>
 						
 						<li><a id="add_informe" href="<c:url value='<%= Constants.INFORME_ADD %>' />"><spring:message code="label.informe.add"/></a></li>
 					</sec:authorize>

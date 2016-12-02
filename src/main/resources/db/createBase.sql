@@ -151,6 +151,7 @@ CREATE TABLE emprestimo (
   livro_id INTEGER   NOT NULL ,
   inicio DATE   NOT NULL ,
   fim DATE      ,
+  periodo INTEGER NOT NULL,
 PRIMARY KEY(id)    ,
   FOREIGN KEY(livro_id)
     REFERENCES livro(id),

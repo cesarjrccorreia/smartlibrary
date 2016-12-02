@@ -22,7 +22,7 @@ public class ReservaDao extends AbstractDao<Integer, Reserva> implements IReserv
 	}
 
 	@Override
-	public Reserva findByUser(final String name)
+	public List<Reserva> findByUser(final String name)
 	{
 		final StringBuilder builder = new StringBuilder();
 		builder.append("FROM Reserva r ");
@@ -31,9 +31,10 @@ public class ReservaDao extends AbstractDao<Integer, Reserva> implements IReserv
 		final Query query = getSession().createQuery(builder.toString());
 		query.setParameter("name", name);
 
-		final Reserva reserva = (Reserva) query.uniqueResult();
+		@SuppressWarnings("unchecked")
+		final List<Reserva> reservas = query.list();
 
-		return reserva;
+		return reservas;
 
 	}
 

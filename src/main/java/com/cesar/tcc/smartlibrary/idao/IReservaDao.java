@@ -26,7 +26,7 @@ public interface IReservaDao
 	 * @param name
 	 * @return
 	 */
-	Reserva findByUser(String name);
+	List<Reserva> findByUser(String name);
 
 	/**
 	 * @return

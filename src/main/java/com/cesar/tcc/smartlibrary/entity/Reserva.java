@@ -36,7 +36,7 @@ public class Reserva implements Serializable
 	 */
 	@NotNull
 	@ManyToOne
-	@JoinColumn(name = "usuario_id")
+	@JoinColumn(name = "user_id")
 	public User getUser()
 	{
 		return user;

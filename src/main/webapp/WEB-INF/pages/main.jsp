@@ -57,7 +57,11 @@
 					<c:forEach var="emprestimo" items="${emprestimos}"  >
 					
 						<div class="list-group-item list-group-item-action">
-							<p class="list-group-item-text" >${emprestimo.id }</p>
+							<label class="list-group-item-text" >
+								<c:out value="${emprestimo.book.name}" />
+							</label>
+							-
+							<label><spring:message code="label.date.limit" />: <c:out value="${emprestimo.limitDateString}" /></label>
 						</div>
 						<c:set var="isEmpty" value="false" />
 					</c:forEach>
@@ -73,10 +77,10 @@
 					<h4 class="title"><spring:message code="title.reserva.efetuada" /></h4>
 					
 					<c:set var="isEmpty" value="true" />
-					<c:forEach var="emprestimo" items="${emprestimos}"  >
+					<c:forEach var="reserva" items="${reservas}"  >
 					
 						<div class="list-group-item list-group-item-action">
-							<p class="list-group-item-text" >${emprestimo.id }</p>
+							<p class="list-group-item-text" >${reserva.book.name}</p>
 						</div>
 						<c:set var="isEmpty" value="false" />
 					</c:forEach>

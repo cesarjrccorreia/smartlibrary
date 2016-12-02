@@ -1,5 +1,8 @@
 package com.cesar.tcc.smartlibrary.entity;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -8,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -25,6 +29,8 @@ public class Emprestimo
 	private Date inicio;
 
 	private Date fim;
+
+	private Integer periodo;
 
 	/**
 	 * @return the id
@@ -86,7 +92,6 @@ public class Emprestimo
 	/**
 	 * @return the inicio
 	 */
-	@NotNull
 	@DateTimeFormat
 	public Date getInicio()
 	{
@@ -118,6 +123,65 @@ public class Emprestimo
 	public void setFim(final Date fim)
 	{
 		this.fim = fim;
+	}
+
+	/**
+	 * @return the periodo
+	 */
+	@NotNull
+	public Integer getPeriodo()
+	{
+		return periodo;
+	}
+
+	/**
+	 * @param periodo
+	 *            the periodo to set
+	 */
+	public void setPeriodo(final Integer periodo)
+	{
+		this.periodo = periodo;
+	}
+
+	@Transient
+	public boolean isLate()
+	{
+		final LocalDateTime currentTime = LocalDateTime.now();
+		final Date currentDate = new Date(currentTime.getNano());
+
+		if (fim == null)
+		{
+			final Date limitDate = getLimitDate();
+
+			if (limitDate.before(currentDate))
+			{
+				return true;
+			}
+
+		}
+
+		return false;
+
+	}
+
+	@Transient
+	public Date getLimitDate()
+	{
+		final Calendar calendar = Calendar.getInstance();
+		calendar.setTime(inicio);
+		calendar.add(Calendar.DATE, 7);
+		final Date limitDate = calendar.getTime();
+
+		return limitDate;
+	}
+
+	@Transient
+	public String getLimitDateString()
+	{
+		final Date limitDate = getLimitDate();
+		final String format = new SimpleDateFormat("MM/dd/yyyy").format(limitDate);
+
+		return format;
 	}
 
 }

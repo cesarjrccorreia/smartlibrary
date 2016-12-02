@@ -1,6 +1,5 @@
 package com.cesar.tcc.smartlibrary.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -18,9 +17,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.cesar.tcc.smartlibrary.entity.Book;
 import com.cesar.tcc.smartlibrary.entity.Emprestimo;
 import com.cesar.tcc.smartlibrary.entity.Informe;
+import com.cesar.tcc.smartlibrary.entity.Reserva;
 import com.cesar.tcc.smartlibrary.entity.User;
 import com.cesar.tcc.smartlibrary.iservice.IBookService;
+import com.cesar.tcc.smartlibrary.iservice.IEmprestimoService;
 import com.cesar.tcc.smartlibrary.iservice.IInformeService;
+import com.cesar.tcc.smartlibrary.iservice.IReservaService;
 import com.cesar.tcc.smartlibrary.iservice.IUserService;
 import com.cesar.tcc.smartlibrary.utilities.Constants;
 
@@ -37,17 +39,26 @@ public class MainController extends AppController
 	@Autowired
 	private IUserService userService;
 
+	@Autowired
+	private IEmprestimoService emprestimoService;
+
+	@Autowired
+	private IReservaService reservaService;
+
 	@RequestMapping
 	public String startMainPage(final ModelMap modelMap)
 	{
-		final Object principal = getPrincipal();
-		modelMap.addAttribute("loggedinuser", principal);
+		final String username = (String) getPrincipal();
+		modelMap.addAttribute("loggedinuser", username);
 
-		final User user = userService.findByUsername((String) principal);
+		final User user = userService.findByUsername(username);
 		modelMap.addAttribute("disciplinas", user.getDisciplinas());
 
-		final List<Emprestimo> emprestimos = new ArrayList<>();
+		final List<Emprestimo> emprestimos = emprestimoService.findAllByUser(username);
 		modelMap.addAttribute("emprestimos", emprestimos);
+
+		final List<Reserva> reservas = reservaService.findByUser(username);
+		modelMap.addAttribute("reservas", reservas);
 
 		final List<Informe> informes = informeService.findAll();
 		modelMap.addAttribute("informes", informes);

@@ -40,11 +40,11 @@ public class ReservaService implements IReservaService
 	}
 
 	@Override
-	public Reserva findByUser(final String name)
+	public List<Reserva> findByUser(final String name)
 	{
-		final Reserva reserva = reservaDao.findByUser(name);
+		final List<Reserva> reservas = reservaDao.findByUser(name);
 
-		return reserva;
+		return reservas;
 	}
 
 	@Override

@@ -45,4 +45,12 @@ public class Constants
 
 	public static String FORM_RENOVAR = "formRenovar";
 
+	public static String NEW_EMPRESTIMO = "/emprestimo/new";
+
+	public static String FORM_EMPRESTIMO = "formEmprestimo";
+
+	public static String CLOSE_EMPRESTIMO = "/emprestimo/close";
+
+	public static String FORM_CLOSE_EMPRESTIMO = "formCloseEmprestimo";
+
 }
