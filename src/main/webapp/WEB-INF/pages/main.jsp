@@ -97,7 +97,7 @@
 		</div>
 </div>
 		
-		<sec:authorize access="hasRole('Aluno')">
+		<sec:authorize access="hasRole('Aluno') or hasRole('Professor')">
 			<div id="recommender" >
 				<c:forEach var="book" items="${books}">
 					<div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
@@ -108,9 +108,13 @@
 										<i class="glyphicon glyphicon-qrcode"></i> ${book.name}
 									</li>
 								</ul>
-								
 								<div class="book-footer">
-									<a href="<c:url value='/books/reservar-${book.id}' />" class="btn btn-info btn-lg"><spring:message code="label.button.reservar" /></a>
+									<a href="<c:url value='/books/reservar-${book.id}' />" class="btn btn-info">
+										<spring:message code="label.button.reservar" />
+									</a>
+									<a href="<c:url value='/books/detail-${book.id}' />" class="btn btn-default">
+										<spring:message code="label.button.details" />
+									</a>
 								</div>
 							</div>
 						</div>

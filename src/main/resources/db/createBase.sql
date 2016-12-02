@@ -116,6 +116,7 @@ CREATE INDEX IFK_Rel_22 ON livros_indicados (user_id);
 CREATE TABLE comentario (
   user_id INTEGER   NOT NULL ,
   livro_id INTEGER   NOT NULL ,
+  titulo VARCHAR NOT NULL,
   comentario VARCHAR   NOT NULL ,
   classificacao INTEGER   NOT NULL   ,
 PRIMARY KEY(user_id, livro_id)    ,

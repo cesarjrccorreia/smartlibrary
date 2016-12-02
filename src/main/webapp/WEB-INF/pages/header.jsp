@@ -5,7 +5,7 @@
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <%@ page isELIgnored="false" %>
 
-<html>
+<html lang="pt-br">
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

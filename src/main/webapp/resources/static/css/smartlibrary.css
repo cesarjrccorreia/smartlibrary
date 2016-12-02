@@ -172,3 +172,8 @@ label
 {
 	font-weight: normal;
 }
+
+.dl-horizontal dd
+{
+	padding-bottom: 2%;
+}

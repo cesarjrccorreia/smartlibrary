@@ -155,6 +155,18 @@ public class BookController extends AppController
 		return redirectMsg;
 	}
 
+	@RequestMapping(value = "/indicar-{id}")
+	public String indicar(@PathVariable final Integer id, final RedirectAttributes redirect)
+	{
+		final String[] parameters = new String[] {};
+		final Locale locale = Locale.getDefault();
+		redirect.addFlashAttribute("success", messageSource.getMessage("msg.indicado", parameters, locale));
+
+		final String redirectMsg = String.format("redirect:/%s", "");
+
+		return redirectMsg;
+	}
+
 	@RequestMapping(value = "/detail-{id}")
 	public String showDetail(@PathVariable final Integer id, final ModelMap model)
 	{
