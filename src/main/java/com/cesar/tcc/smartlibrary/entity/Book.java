@@ -1,6 +1,7 @@
 package com.cesar.tcc.smartlibrary.entity;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -13,10 +14,13 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -51,6 +55,8 @@ public class Book implements Serializable
 	private Double rating;
 
 	private Set<Author> authors;
+
+	private List<Comentario> comments;
 
 	/**
 	 * @return the id
@@ -265,6 +271,25 @@ public class Book implements Serializable
 	public void setAuthors(final Set<Author> authors)
 	{
 		this.authors = authors;
+	}
+
+	/**
+	 * @return the comments
+	 */
+	@OneToMany(mappedBy = "book", orphanRemoval = true)
+	@LazyCollection(LazyCollectionOption.FALSE)
+	public List<Comentario> getComments()
+	{
+		return comments;
+	}
+
+	/**
+	 * @param comments
+	 *            the comments to set
+	 */
+	public void setComments(final List<Comentario> comments)
+	{
+		this.comments = comments;
 	}
 
 }

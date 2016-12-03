@@ -50,13 +50,13 @@
 	</div>
 	
 	<div class="comment col-md-8 list-group">
-		<%-- <c:forEach var="comment" items="${book.comments}">
+		<c:forEach var="comment" items="${book.comments}">
 			<div class="list-group-item list-group-item-action">
-				<h3 class="list-group-item-heading">${comment.titulo}</h3>
+				<h3 class="list-group-item-heading">${comment.title}</h3>
+				<p class="list-group-item-text" >${comment.comment}</p>
 				<p class="list-group-item-text" >${comment.rating}</p>
-				<p class="list-group-item-text" >${comment.text}</p>
 			</div>
-		</c:forEach> --%>
+		</c:forEach>
 	</div>
 </div>
 
