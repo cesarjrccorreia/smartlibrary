@@ -76,6 +76,7 @@ public class MainController extends AppController
 
 		modelMap.addAttribute("books", book);
 		modelMap.addAttribute("search", search);
+		modelMap.addAttribute("loggedinuser", getPrincipal());
 
 		return Constants.SEARCH_PAGE;
 	}

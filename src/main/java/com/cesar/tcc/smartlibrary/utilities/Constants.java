@@ -67,4 +67,6 @@ public class Constants
 
 	public static Integer LIMIT_ROWS = 4;
 
+	public static String FORM_COMENTAR = "formComentar";
+
 }

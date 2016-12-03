@@ -39,7 +39,8 @@
 			<a href="<c:url value='/books/reservar-${book.id}' />" class="btn btn-info">
 				<spring:message code="label.button.reservar" />
 			</a>
-			<a href="<c:url value='/books/comentar-${book.id}' />" class="btn btn-default">
+			<c:set value="${book.id}" var="bookId" />
+			<a href="<c:url value='/books/comentar-${bookId}' />" class="btn btn-default">
 				<spring:message code="label.button.comment" />
 			</a>
 			

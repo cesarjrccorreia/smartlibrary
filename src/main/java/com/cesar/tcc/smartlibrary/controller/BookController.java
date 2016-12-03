@@ -18,10 +18,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.entity.Author;
 import com.cesar.tcc.smartlibrary.entity.Book;
+import com.cesar.tcc.smartlibrary.entity.Comentario;
 import com.cesar.tcc.smartlibrary.entity.Editora;
+import com.cesar.tcc.smartlibrary.entity.User;
 import com.cesar.tcc.smartlibrary.iservice.IAuthorService;
 import com.cesar.tcc.smartlibrary.iservice.IBookService;
+import com.cesar.tcc.smartlibrary.iservice.IComentarioService;
 import com.cesar.tcc.smartlibrary.iservice.IEditoraService;
+import com.cesar.tcc.smartlibrary.iservice.IUserService;
 import com.cesar.tcc.smartlibrary.utilities.Constants;
 
 @Controller(value = "bookController")
@@ -37,6 +41,12 @@ public class BookController extends AppController
 
 	@Autowired
 	IEditoraService editoraService;
+
+	@Autowired
+	IUserService userService;
+
+	@Autowired
+	IComentarioService comentarioService;
 
 	@RequestMapping
 	public String listAll(final ModelMap model)
@@ -163,6 +173,52 @@ public class BookController extends AppController
 		redirect.addFlashAttribute("success", messageSource.getMessage("msg.indicado", parameters, locale));
 
 		final String redirectMsg = String.format("redirect:/%s", "");
+
+		return redirectMsg;
+	}
+
+	@RequestMapping(value = "comentar-{id}")
+	public String comentar(@PathVariable final Integer id, final ModelMap model)
+	{
+		final Comentario comentario = new Comentario();
+		final Book book = bookService.findById(id);
+		comentario.setBook(book);
+		model.addAttribute("comment", comentario);
+		model.addAttribute("loggedinuser", getPrincipal());
+
+		return Constants.FORM_COMENTAR;
+	}
+
+	@RequestMapping(value = "comentar-{bookId}", method = RequestMethod.POST)
+	public String saveComment(final Comentario comentario, @PathVariable final Integer bookId,
+			final RedirectAttributes redirect, final BindingResult result)
+	{
+		final Book book = bookService.findById(bookId);
+		comentario.setBook(book);
+		final String username = (String) getPrincipal();
+		final User user = userService.findByUsername(username);
+		comentario.setUser(user);
+
+		final String[] parameters = new String[] {};
+		final Locale locale = Locale.getDefault();
+		final String redirectMsg = String.format("redirect:/books/detail-%s", bookId);
+
+		if (result.hasErrors())
+		{
+			return redirectMsg;
+		}
+
+		try
+		{
+			comentarioService.save(comentario);
+			redirect.addFlashAttribute("success", messageSource.getMessage("msg.commented", parameters, locale));
+
+		}
+		catch (final Exception e)
+		{
+			e.printStackTrace();
+			redirect.addFlashAttribute("error", messageSource.getMessage("msg.erro.commented", parameters, locale));
+		}
 
 		return redirectMsg;
 	}
