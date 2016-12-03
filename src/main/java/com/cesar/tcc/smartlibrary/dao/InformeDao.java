@@ -51,4 +51,17 @@ public class InformeDao extends AbstractDao<Integer, Informe> implements IInform
 		return informes;
 	}
 
+	@Override
+	public List<Informe> findLastInform(final Integer limitRows)
+	{
+		final Criteria criteria = createEntityCriteria().addOrder(Order.desc("id"));
+		criteria.setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+		criteria.setMaxResults(limitRows);
+
+		@SuppressWarnings("unchecked")
+		final List<Informe> informes = criteria.list();
+
+		return informes;
+	}
+
 }

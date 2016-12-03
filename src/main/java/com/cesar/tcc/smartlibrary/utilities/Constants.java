@@ -65,4 +65,6 @@ public class Constants
 
 	public static String DETAIL_BOOK = "detailBook";
 
+	public static Integer LIMIT_ROWS = 4;
+
 }

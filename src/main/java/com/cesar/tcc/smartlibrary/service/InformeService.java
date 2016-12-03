@@ -60,4 +60,12 @@ public class InformeService implements IInformeService
 		informeDao.update(informe);
 	}
 
+	@Override
+	public List<Informe> findLastInform(final Integer limitRows)
+	{
+		final List<Informe> informes = informeDao.findLastInform(limitRows);
+
+		return informes;
+	}
+
 }

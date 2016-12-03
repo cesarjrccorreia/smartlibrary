@@ -35,4 +35,10 @@ public interface IInformeDao
 	 */
 	void update(Informe informe);
 
+	/**
+	 * @param limitRows
+	 * @return
+	 */
+	List<Informe> findLastInform(final Integer limitRows);
+
 }

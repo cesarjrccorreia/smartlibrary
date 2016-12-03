@@ -60,7 +60,7 @@ public class MainController extends AppController
 		final List<Reserva> reservas = reservaService.findByUser(username);
 		modelMap.addAttribute("reservas", reservas);
 
-		final List<Informe> informes = informeService.findAll();
+		final List<Informe> informes = informeService.findLastInform(Constants.LIMIT_ROWS);
 		modelMap.addAttribute("informes", informes);
 
 		final List<Book> livros = bookService.recommender();

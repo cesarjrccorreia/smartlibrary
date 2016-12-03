@@ -98,7 +98,7 @@
 </div>
 		
 		<sec:authorize access="hasRole('Aluno') or hasRole('Professor')">
-			<div id="recommender" >
+			<div id="recommender" class="panel" >
 				<c:forEach var="book" items="${books}">
 					<div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
 						<div class="db-wrapper">

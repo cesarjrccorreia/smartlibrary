@@ -45,7 +45,12 @@
 						<td>${book.name}</td>
 						<td>${book.year}</td>
 						<td>${book.edition}</td>
-						<td>${book.rating}</td>
+						<td>
+							<c:forEach  begin="1" end="${book.rating}">
+								<i id="starRating" class="glyphicon glyphicon-star" ></i>
+							</c:forEach>
+							
+						</td>
 						<td>
 							<a href="<c:url value='/books/reservar-${book.id}' />" class="btn btn-primary custom-width">
 								<spring:message code="label.button.reservar" />
