@@ -45,6 +45,15 @@ public interface IBookService
 	 */
 	void update(final Book book);
 
+	/**
+	 * @return
+	 */
 	List<Book> recommender();
+
+	/**
+	 * @param search
+	 * @return
+	 */
+	List<Book> search(final String search);
 
 }

@@ -93,9 +93,16 @@ public class BookService implements IBookService
 	@Override
 	public List<Book> recommender()
 	{
-		final List<Book> livros = bookDao.findAll();
+		final List<Book> livros = bookDao.recommender();
 
 		return livros;
+	}
+
+	@Override
+	public List<Book> search(final String search)
+	{
+		final List<Book> books = bookDao.search(search);
+		return books;
 	}
 
 }

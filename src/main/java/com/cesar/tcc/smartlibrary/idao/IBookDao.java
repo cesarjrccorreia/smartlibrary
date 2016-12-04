@@ -39,4 +39,15 @@ public interface IBookDao
 	 */
 	void update(Book book);
 
+	/**
+	 * @param search
+	 * @return
+	 */
+	List<Book> search(final String search);
+
+	/**
+	 * @return
+	 */
+	List<Book> recommender();
+
 }

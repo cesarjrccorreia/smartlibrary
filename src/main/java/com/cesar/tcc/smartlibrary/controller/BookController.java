@@ -191,7 +191,7 @@ public class BookController extends AppController
 
 	@RequestMapping(value = "comentar-{bookId}", method = RequestMethod.POST)
 	public String saveComment(final Comentario comentario, @PathVariable final Integer bookId,
-			final RedirectAttributes redirect, final BindingResult result)
+			final RedirectAttributes redirect)
 	{
 		final Book book = bookService.findById(bookId);
 		comentario.setBook(book);
@@ -202,11 +202,6 @@ public class BookController extends AppController
 		final String[] parameters = new String[] {};
 		final Locale locale = Locale.getDefault();
 		final String redirectMsg = String.format("redirect:/books/detail-%s", bookId);
-
-		if (result.hasErrors())
-		{
-			return redirectMsg;
-		}
 
 		try
 		{

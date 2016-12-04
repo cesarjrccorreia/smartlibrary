@@ -6,6 +6,7 @@ package com.cesar.tcc.smartlibrary.dao;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Query;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
@@ -72,6 +73,31 @@ public class BookDao extends AbstractDao<Integer, Book> implements IBookDao
 	public void update(final Book book)
 	{
 		update(book);
+	}
+
+	@Override
+	public List<Book> search(final String search)
+	{
+		final StringBuilder builder = new StringBuilder();
+		builder.append("FROM Book b ");
+		builder.append("WHERE lower(b.name) like :search ");
+		builder.append("OR lower(b.summary) like :search ");
+		builder.append("ORDER BY b.rating DESC");
+
+		final Query query = getSession().createQuery(builder.toString());
+		query.setParameter("search", "%" + search.toLowerCase() + "%");
+
+		@SuppressWarnings("unchecked")
+		final List<Book> books = query.list();
+
+		return books;
+	}
+
+	@Override
+	public List<Book> recommender()
+	{
+		final List<Book> books = findAll();
+		return books;
 	}
 
 }
