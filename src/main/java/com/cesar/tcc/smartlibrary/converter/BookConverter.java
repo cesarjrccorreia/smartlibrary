@@ -16,6 +16,11 @@ public class BookConverter implements Converter<Object, Book>
 	@Override
 	public Book convert(final Object element)
 	{
+		if (element instanceof Book)
+		{
+			return (Book) element;
+		}
+
 		final Integer id = Integer.parseInt((String) element);
 		final Book book = bookService.findById(id);
 

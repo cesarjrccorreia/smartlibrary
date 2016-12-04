@@ -16,6 +16,11 @@ public class EditoraConverter implements Converter<Object, Editora>
 	@Override
 	public Editora convert(final Object element)
 	{
+		if (element instanceof Editora)
+		{
+			return (Editora) element;
+		}
+
 		final Integer id = Integer.parseInt((String) element);
 		final Editora editora = editoraService.findById(id);
 

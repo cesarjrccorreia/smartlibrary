@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.cesar.tcc.smartlibrary.entity.Book;
+import com.cesar.tcc.smartlibrary.entity.Disciplina;
 import com.cesar.tcc.smartlibrary.entity.Emprestimo;
 import com.cesar.tcc.smartlibrary.entity.Informe;
 import com.cesar.tcc.smartlibrary.entity.Reserva;
@@ -52,7 +53,8 @@ public class MainController extends AppController
 		modelMap.addAttribute("loggedinuser", username);
 
 		final User user = userService.findByUsername(username);
-		modelMap.addAttribute("disciplinas", user.getDisciplinas());
+		final List<Disciplina> disciplinas = user.getDisciplinas();
+		modelMap.addAttribute("disciplinas", disciplinas);
 
 		final List<Emprestimo> emprestimos = emprestimoService.findAllByUser(username);
 		modelMap.addAttribute("emprestimos", emprestimos);
@@ -63,7 +65,7 @@ public class MainController extends AppController
 		final List<Informe> informes = informeService.findLastInform(Constants.LIMIT_ROWS);
 		modelMap.addAttribute("informes", informes);
 
-		final List<Book> livros = bookService.recommender();
+		final List<Book> livros = bookService.recommender(disciplinas);
 		modelMap.addAttribute("books", livros);
 
 		return Constants.MAIN_PAGE;

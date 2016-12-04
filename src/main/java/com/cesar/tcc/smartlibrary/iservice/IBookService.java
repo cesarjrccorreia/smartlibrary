@@ -3,6 +3,7 @@ package com.cesar.tcc.smartlibrary.iservice;
 import java.util.List;
 
 import com.cesar.tcc.smartlibrary.entity.Book;
+import com.cesar.tcc.smartlibrary.entity.Disciplina;
 
 public interface IBookService
 {
@@ -48,7 +49,7 @@ public interface IBookService
 	/**
 	 * @return
 	 */
-	List<Book> recommender();
+	List<Book> recommender(final List<Disciplina> disciplinas);
 
 	/**
 	 * @param search

@@ -16,6 +16,11 @@ public class AuthorConverter implements Converter<Object, Author>
 	@Override
 	public Author convert(final Object element)
 	{
+		if (element instanceof Author)
+		{
+			return (Author) element;
+		}
+
 		final Integer id = Integer.parseInt((String) element);
 		final Author author = authorService.findById(id);
 

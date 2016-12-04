@@ -3,6 +3,7 @@
  */
 package com.cesar.tcc.smartlibrary.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cesar.tcc.smartlibrary.entity.Book;
+import com.cesar.tcc.smartlibrary.entity.Disciplina;
 import com.cesar.tcc.smartlibrary.idao.IBookDao;
 import com.cesar.tcc.smartlibrary.iservice.IBookService;
 
@@ -91,9 +93,31 @@ public class BookService implements IBookService
 	}
 
 	@Override
-	public List<Book> recommender()
+	public List<Book> recommender(final List<Disciplina> disciplinas)
 	{
-		final List<Book> livros = bookDao.recommender();
+
+		final List<Book> livros = new ArrayList<>();
+
+		for (final Disciplina disciplina : disciplinas)
+		{
+			final String ementa = disciplina.getEmenta();
+			final String textSearch[] = ementa.split("\\r\\n|\\n|\\r");
+
+			for (final String search : textSearch)
+			{
+				final List<Book> listBookByDisciplina = bookDao.search(search);
+
+				for (final Book book : listBookByDisciplina)
+				{
+					if (livros.contains(book))
+					{
+						continue;
+					}
+
+					livros.add(book);
+				}
+			}
+		}
 
 		return livros;
 	}

@@ -16,6 +16,11 @@ public class DisciplinaConverter implements Converter<Object, Disciplina>
 	@Override
 	public Disciplina convert(final Object element)
 	{
+		if (element instanceof Disciplina)
+		{
+			return (Disciplina) element;
+		}
+
 		final Integer id = Integer.parseInt((String) element);
 		final Disciplina disciplina = disciplinaService.getByKey(id);
 
