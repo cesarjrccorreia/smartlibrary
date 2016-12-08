@@ -109,9 +109,17 @@
 									</li>
 								</ul>
 								<div class="book-footer">
-									<a href="<c:url value='/books/reservar-${book.id}' />" class="btn btn-info">
-										<spring:message code="label.button.reservar" />
-									</a>
+									<sec:authorize access="hasRole('Professor')">
+										<a href="<c:url value='/books/indicar-${book.id}' />" class="btn btn-primary">
+											<spring:message code="label.button.indicar" />
+										</a>
+									</sec:authorize>
+								
+									<sec:authorize access="hasRole('Aluno')">
+										<a href="<c:url value='/books/reservar-${book.id}' />" class="btn btn-info">
+											<spring:message code="label.button.reservar" />
+										</a>
+									</sec:authorize>
 									<a href="<c:url value='/books/detail-${book.id}' />" class="btn btn-default">
 										<spring:message code="label.button.details" />
 									</a>
