@@ -2,7 +2,15 @@ package com.cesar.tcc.smartlibrary.controller;
 
 import java.util.List;
 import java.util.Locale;
+import java.util.Properties;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,6 +120,50 @@ public class MainController extends AppController
 		final String redirectMsg = String.format("redirect:%s", "/");
 
 		return redirectMsg;
+	}
+
+	protected void sendEmail()
+	{
+		final String from = "smartlibraryteste@gmail.com";
+		final String username = from;
+		final String password = "SmartLibrary2712";
+		final String to = "cesarjrcorreia@gmail.com";
+		final Properties properties = new Properties();
+		properties.put("mail.smtp.auth", "true");
+		properties.put("mail.smtp.starttls.enable", "true");
+		properties.setProperty("mail.smtp.host", "smtp.gmail.com");
+		properties.put("mail.smtp.port", "587");
+
+		final Session session = Session.getInstance(properties, new Authenticator() {
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication()
+			{
+				return new PasswordAuthentication(username, password);
+			}
+		});
+
+		try
+		{
+			final Message message = new MimeMessage(session);
+			final InternetAddress internetAddressFrom = new InternetAddress(from);
+			message.setFrom(internetAddressFrom);
+
+			final InternetAddress internetAddressTo = new InternetAddress(to);
+			message.addRecipient(Message.RecipientType.TO, internetAddressTo);
+
+			message.setSubject("SmartLibrary - Empréstimo próximo a vencer");
+
+			message.setText("Teste");
+
+			Transport.send(message);
+
+		}
+
+		catch (final Exception e)
+		{
+			e.printStackTrace();
+		}
+
 	}
 
 }
