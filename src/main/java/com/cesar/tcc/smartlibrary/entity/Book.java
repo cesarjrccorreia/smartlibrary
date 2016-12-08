@@ -292,4 +292,10 @@ public class Book implements Serializable
 		this.comments = comments;
 	}
 
+	@Override
+	public String toString()
+	{
+		return "User [id=" + id + ", Name=" + name + ", isbn=" + isbn + "]";
+	}
+
 }

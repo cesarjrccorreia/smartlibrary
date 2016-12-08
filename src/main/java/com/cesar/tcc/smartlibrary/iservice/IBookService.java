@@ -57,4 +57,9 @@ public interface IBookService
 	 */
 	List<Book> search(final String search);
 
+	/**
+	 * @param book
+	 */
+	void createQRCODE(final Book book);
+
 }

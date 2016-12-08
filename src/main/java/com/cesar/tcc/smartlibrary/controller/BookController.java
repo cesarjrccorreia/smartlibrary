@@ -227,4 +227,19 @@ public class BookController extends AppController
 		return Constants.DETAIL_BOOK;
 	}
 
+	@RequestMapping(value = "/qrcode")
+	public String generateQrCode(final RedirectAttributes redirect)
+	{
+		final String[] parameters = new String[] {};
+		final Locale locale = Locale.getDefault();
+		final String redirectMsg = String.format("redirect:/%s", "");
+
+		final Book book = bookService.findById(6);
+
+		bookService.createQRCODE(book);
+		redirect.addFlashAttribute("success", messageSource.getMessage("msg.commented", parameters, locale));
+
+		return redirectMsg;
+	}
+
 }
