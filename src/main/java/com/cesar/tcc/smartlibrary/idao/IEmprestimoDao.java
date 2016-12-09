@@ -18,4 +18,6 @@ public interface IEmprestimoDao
 
 	List<Emprestimo> findAllByUser(final String name);
 
+	List<Emprestimo> findEmprestimosAVencer();
+
 }

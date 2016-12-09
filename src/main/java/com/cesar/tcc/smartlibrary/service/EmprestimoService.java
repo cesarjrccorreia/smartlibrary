@@ -62,4 +62,11 @@ public class EmprestimoService implements IEmprestimoService
 		return emprestimos;
 	}
 
+	@Override
+	public List<Emprestimo> findEmprestimosAVencer()
+	{
+		final List<Emprestimo> emprestimos = emprestimoDao.findEmprestimosAVencer();
+		return emprestimos;
+	}
+
 }

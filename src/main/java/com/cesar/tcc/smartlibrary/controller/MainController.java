@@ -57,6 +57,8 @@ public class MainController extends AppController
 	@RequestMapping
 	public String startMainPage(final ModelMap modelMap)
 	{
+		findEmprestimoAVencer();
+
 		final String username = (String) getPrincipal();
 		modelMap.addAttribute("loggedinuser", username);
 
@@ -122,12 +124,24 @@ public class MainController extends AppController
 		return redirectMsg;
 	}
 
-	protected void sendEmail()
+	protected void findEmprestimoAVencer()
+	{
+		final List<Emprestimo> emprestimos = emprestimoService.findEmprestimosAVencer();
+
+		if (emprestimos.isEmpty())
+		{
+			return;
+		}
+
+		sendEmail(emprestimos);
+
+	}
+
+	protected void sendEmail(final List<Emprestimo> emprestimos)
 	{
 		final String from = "smartlibraryteste@gmail.com";
 		final String username = from;
 		final String password = "SmartLibrary2712";
-		final String to = "cesarjrcorreia@gmail.com";
 		final Properties properties = new Properties();
 		properties.put("mail.smtp.auth", "true");
 		properties.put("mail.smtp.starttls.enable", "true");
@@ -144,18 +158,27 @@ public class MainController extends AppController
 
 		try
 		{
-			final Message message = new MimeMessage(session);
-			final InternetAddress internetAddressFrom = new InternetAddress(from);
-			message.setFrom(internetAddressFrom);
+			for (final Emprestimo emprestimo : emprestimos)
+			{
+				final User user = emprestimo.getUser();
+				final String to = user.getEmail();
+				final Message message = new MimeMessage(session);
+				final InternetAddress internetAddressFrom = new InternetAddress(from);
+				message.setFrom(internetAddressFrom);
 
-			final InternetAddress internetAddressTo = new InternetAddress(to);
-			message.addRecipient(Message.RecipientType.TO, internetAddressTo);
+				final InternetAddress internetAddressTo = new InternetAddress(to);
+				message.addRecipient(Message.RecipientType.TO, internetAddressTo);
 
-			message.setSubject("SmartLibrary - Empréstimo próximo a vencer");
+				message.setSubject("SmartLibrary - Empréstimo próximo a vencer");
 
-			message.setText("Teste");
+				final Book book = emprestimo.getBook();
+				final String bookName = book.getName();
+				final String limitDate = emprestimo.getLimitDateString();
+				final String text = String.format("O emprestimo do livro %s vencerá em %s", bookName, limitDate);
+				message.setText(text);
 
-			Transport.send(message);
+				Transport.send(message);
+			}
 
 		}
 

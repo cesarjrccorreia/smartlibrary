@@ -1,5 +1,7 @@
 package com.cesar.tcc.smartlibrary.dao;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -49,6 +51,35 @@ public class EmprestimoDao extends AbstractDao<Integer, Emprestimo> implements I
 
 		@SuppressWarnings("unchecked")
 		final List<Emprestimo> emprestimos = query.list();
+		return emprestimos;
+	}
+
+	@Override
+	public List<Emprestimo> findEmprestimosAVencer()
+	{
+		final StringBuilder builder = new StringBuilder();
+		builder.append("FROM Emprestimo e ");
+		builder.append("WHERE e.fim is null ");
+
+		final Query query = getSession().createQuery(builder.toString());
+
+		@SuppressWarnings("unchecked")
+		final List<Emprestimo> emprestimos = query.list();
+
+		for (final Emprestimo emprestimo : emprestimos)
+		{
+			final Date limitDate = emprestimo.getLimitDate();
+			final Calendar calendar = Calendar.getInstance();
+			calendar.setTime(new Date());
+			calendar.add(Calendar.DAY_OF_MONTH, 1);
+			final Date currentDate = calendar.getTime();
+
+			if (!currentDate.equals(limitDate))
+			{
+				emprestimos.remove(emprestimo);
+			}
+		}
+
 		return emprestimos;
 	}
 

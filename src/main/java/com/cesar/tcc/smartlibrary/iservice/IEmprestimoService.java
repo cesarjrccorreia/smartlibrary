@@ -18,4 +18,6 @@ public interface IEmprestimoService
 
 	List<Emprestimo> findAllByUser(String name);
 
+	List<Emprestimo> findEmprestimosAVencer();
+
 }
