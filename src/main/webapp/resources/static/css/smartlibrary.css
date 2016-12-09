@@ -1,1 +1,179 @@
 @CHARSET "UTF-8";
+
+html {
+	height: 100%;
+}
+/* container adjusted */
+.alt-grid .container {
+	width:100%;
+	max-width:none;
+	padding:0;
+}
+
+.allt-grid {
+	height: 100%;
+}
+
+.container {
+	height:100%;
+}
+/* Inicio página login */
+#mainWrapper {
+	height: 100%;
+	background-image: -webkit-gradient(
+	linear,
+	right bottom,
+	right top,
+	color-stop(0, #EDEDED),
+	color-stop(0.08, #EAEAEA),
+	color-stop(1, #2F2F2F),
+	color-stop(1, #AAAAAA)
+);
+background-image: -o-linear-gradient(top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, #AAAAAA 100%);
+background-image: -moz-linear-gradient(top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, #AAAAAA 100%);
+background-image: -webkit-linear-gradient(top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, #AAAAAA 100%);
+background-image: -ms-linear-gradient(top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, #AAAAAA 100%);
+background-image: linear-gradient(to top, #EDEDED 0%, #EAEAEA 8%, #2F2F2F 100%, #AAAAAA 100%);
+}
+
+.floatRight{
+	float:right;
+	margin-right: 50px;
+}
+
+.has-error{
+	color:red;
+}
+
+#mainWrapper {
+	height: 100vh; /*with Viewport-Percentage, we can handles all devices screens  */
+	padding-left:10px;
+	padding-right:10px;
+	padding-bottom:10px;
+}
+
+.login-container {
+    margin-top: 100px;
+    background-color: floralwhite;
+    width: 40%;
+    left: 30%;
+    position: absolute;
+}
+
+.login-card {
+    width: 80%;
+    margin: auto;
+}
+
+.login-form {
+    padding: 10%;
+}
+
+/* FIM página login */
+
+.header
+{
+	border-radius: 0px;
+	padding-top: 0px;
+}
+
+#recommender
+{
+}
+
+.area-alertas
+{
+	height: 54%;
+	border-radius: 6px;
+	box-shadow: 0px 2px 17px 9px silver;
+}
+
+.informe
+{
+	height: 54%
+}
+
+.list-group-item-heading
+{
+	font-weight: bold;
+}
+
+/* RECOMMENDER */
+
+.db-book {
+    margin-bottom: 30px;
+    margin-top: 30px;
+    text-align: center;
+    border: 1px solid #C5C2C2;
+    background-color: #EDEDED;
+}
+
+.db-book:hover {
+    margin-top: 5px;
+    -moz-transition: margin-top 0.25s ease 0s;
+    -ms-transition: margin-top 0.25s ease 0s;
+    transition: margin-top 0.25s ease 0s;
+}
+
+.db-book ul {
+    list-style: none;
+    margin: 0;
+    text-align: center;
+    padding-left: 0px;
+}
+
+.db-book ul li {
+    border-bottom: solid 1px #D8D8D8;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.db-book ul li.book-title {
+    background-color: #fff;
+    padding: 2px 2px 2px 2px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #353c3e;
+}
+
+.db-book ul li.book-title i {
+    padding: 15px;
+    font-size: 50px;
+    display: block;
+}
+
+.db-book .book-footer {
+    padding: 20px;
+}
+
+.db-book .book-footer a i {
+    margin: 5px;
+    top: 3px;
+}
+
+.row {
+	padding-left: 1%;
+	padding-right: 1%;
+}
+
+.title 
+{
+	font-weight: bold;
+}
+
+select[multiple].input-sm
+{
+	height: 200px;
+}
+
+label
+{
+	font-weight: normal;
+}
+
+.dl-horizontal dd
+{
+	padding-bottom: 2%;
+}

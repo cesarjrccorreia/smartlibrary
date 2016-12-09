@@ -20,22 +20,25 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @EnableTransactionManagement
 @ComponentScan({ "com.cesar.tcc.smartlibrary.configuration" })
 @PropertySource(value = { "classpath:application.properties" })
-public class HibernateConfiguration {
+public class HibernateConfiguration
+{
 
 	@Autowired
 	private Environment environment;
 
 	@Bean
-	public LocalSessionFactoryBean sessionFactory() {
+	public LocalSessionFactoryBean sessionFactory()
+	{
 		final LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(dataSource());
-		sessionFactory.setPackagesToScan(new String[] { "com.cesar.tcc.smartlibrary.model" });
+		sessionFactory.setPackagesToScan(new String[] { "com.cesar.tcc.smartlibrary.entity" });
 		sessionFactory.setHibernateProperties(hibernateProperties());
 
 		return sessionFactory;
 	}
 
-	private Properties hibernateProperties() {
+	private Properties hibernateProperties()
+	{
 
 		final Properties properties = new Properties();
 		properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
@@ -45,7 +48,8 @@ public class HibernateConfiguration {
 		return properties;
 	}
 
-	private DataSource dataSource() {
+	private DataSource dataSource()
+	{
 
 		final DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		dataSource.setDriverClassName(environment.getRequiredProperty("jdbc.driverClassName"));
@@ -58,7 +62,8 @@ public class HibernateConfiguration {
 
 	@Bean
 	@Autowired
-	public HibernateTransactionManager transactionManager(final SessionFactory sessionFactory) {
+	public HibernateTransactionManager transactionManager(final SessionFactory sessionFactory)
+	{
 
 		final HibernateTransactionManager txManager = new HibernateTransactionManager();
 		txManager.setSessionFactory(sessionFactory);
