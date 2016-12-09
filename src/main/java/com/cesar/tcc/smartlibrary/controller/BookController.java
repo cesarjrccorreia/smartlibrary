@@ -206,6 +206,7 @@ public class BookController extends AppController
 		try
 		{
 			comentarioService.save(comentario);
+			recalcularClassificacao(book);
 			redirect.addFlashAttribute("success", messageSource.getMessage("msg.commented", parameters, locale));
 
 		}
@@ -216,6 +217,24 @@ public class BookController extends AppController
 		}
 
 		return redirectMsg;
+	}
+
+	private void recalcularClassificacao(final Book book)
+	{
+		final List<Comentario> comentarios = book.getComments();
+
+		Double rating = book.getRating();
+		for (final Comentario comentario : comentarios)
+		{
+			rating += comentario.getRating().doubleValue();
+		}
+
+		rating = rating / comentarios.size();
+
+		book.setRating(rating);
+
+		bookService.update(book);
+
 	}
 
 	@RequestMapping(value = "/detail-{id}")
